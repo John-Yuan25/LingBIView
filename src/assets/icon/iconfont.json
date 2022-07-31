@@ -1,0 +1,79 @@
+{
+  "id": "3482963",
+  "name": "vueVisual",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2076385",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e8c1",
+      "unicode_decimal": 59585
+    },
+    {
+      "icon_id": "19689706",
+      "name": "加载中",
+      "font_class": "round-loading",
+      "unicode": "eb74",
+      "unicode_decimal": 60276
+    },
+    {
+      "icon_id": "14732",
+      "name": "向下",
+      "font_class": "xiangxia",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "136387",
+      "name": "下载",
+      "font_class": "xiazai",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "3458309",
+      "name": "导入",
+      "font_class": "daoru",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "2077519",
+      "name": "保存",
+      "font_class": "baocun",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "4686547",
+      "name": "发布",
+      "font_class": "fabu",
+      "unicode": "ec09",
+      "unicode_decimal": 60425
+    },
+    {
+      "icon_id": "4890403",
+      "name": "预览",
+      "font_class": "yulan",
+      "unicode": "e6f1",
+      "unicode_decimal": 59121
+    },
+    {
+      "icon_id": "1130",
+      "name": "锁定",
+      "font_class": "suoding",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1727459",
+      "name": "224用户",
+      "font_class": "yonghu",
+      "unicode": "e8c8",
+      "unicode_decimal": 59592
+    }
+  ]
+}
