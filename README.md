@@ -14,6 +14,8 @@ LingBIView 是一个高效的拖拽式低代码数据可视化开发平台，将
 
 
 
+**Demo地址：**https://ling-bi-view.vercel.app/
+
 #### 主要技术栈
 
 | 名称    | 版本  | 名称        | 版本   |
