@@ -40,13 +40,11 @@ async function next() {
     //发送登录请求验证，返回的result为布尔值
 
     let result:boolean = await checkUser(userName.value, password.value)
-    // console.log(result);
-    
     if(result){
     router.push({
         path: '/item'
     })
-    console.log(userName.value,password.value);
+    // console.log(userName.value,password.value);
     }else{
         alert('请使用默认账号密码登录')
     }
@@ -96,18 +94,12 @@ async function next() {
 
     .logo {
         flex: 3;
-        padding: 10px 0px 0px;
-        position: relative;
-
         .img {
-            width: 200px;
-            height: 90%;
+            height: 70%;
             background-repeat: no-repeat;
             background-size: contain;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+            margin-left:35%;
+            margin-top: 5%;
         }
     }
 
