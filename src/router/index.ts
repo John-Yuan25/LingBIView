@@ -26,4 +26,17 @@ const router = createRouter({
   routes
 })
 
+//路由守卫
+router.beforeEach((to,from,next)=>{
+  //验证token，只有存在token的时候，才能跳转到工作区
+  let token=sessionStorage.getItem("token")
+  if(token || to.path==='/'){
+    next();
+  }else{
+    next('/')
+    alert('请先登录')
+  }
+
+})
+
 export default router

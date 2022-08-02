@@ -37,18 +37,34 @@ let userName = ref<string>('admin')
 let password = ref<string>('123456')
 
 async function next() {
-    //发送登录请求验证，返回的result为布尔值
+    // 发送登录请求验证，返回的result为token
+    // const promise = new Promise(async (resolve, reject) => {
+    //     try {
+    //         let result: string = await checkUser(userName.value, password.value) as string
+    //         resolve(result)
+    //     } catch (error) {
+    //         reject(error)
+    //     }
+    // }).then(value => {
+    //     sessionStorage.setItem("token", value as string)
+    //     router.push({
+    //         path: '/item'
+    //     })
+    // }, err => {
+    //     console.log(err);
+    //     alert('请使用默认账号密码登录')
+    // })
 
-    let result:boolean = await checkUser(userName.value, password.value)
-    if(result){
-    router.push({
-        path: '/item'
-    })
-    // console.log(userName.value,password.value);
-    }else{
+
+    // 无后台登录验证（临时）
+    if (userName.value === "admin" && password.value === '123456') {
+        sessionStorage.setItem("token", 'temporary')
+        router.push({
+            path: '/item'
+        })
+    } else {
         alert('请使用默认账号密码登录')
     }
-
 }
 
 </script>
@@ -94,11 +110,12 @@ async function next() {
 
     .logo {
         flex: 3;
+
         .img {
             height: 70%;
             background-repeat: no-repeat;
             background-size: contain;
-            margin-left:35%;
+            margin-left: 35%;
             margin-top: 5%;
         }
     }
