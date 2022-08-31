@@ -20,7 +20,7 @@ export const useImgStore = function (this: any, id: any) {
       ],
       tag: imgComp,
       imgUrl:
-        "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/baike/s=290/sign=fa9cb3ef374e251fe6f7e3f19784c9c2/e7cd7b899e510fb3b48c6642de33c895d0430c49.jpg",
+        "https://v2.cn.vuejs.org/images/logo.svg",
     }),
     getters: {},
     actions: {},
