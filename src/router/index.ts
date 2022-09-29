@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path:'/item',
-    component: () => import('../view/item.vue')
+    component: () => import('../view/itemPage/item.vue')
   },
   {
     path:'/preview',

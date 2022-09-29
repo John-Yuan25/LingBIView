@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { getId, mountedComponent,unMountedComponent } from '../utils/index'
-import getComponent from '../stores/index';
+import { getId, mountedComponent,unMountedComponent } from '../../utils/index'
+import getComponent from '../../stores/index';
 import { ref, reactive, computed, toRefs } from 'vue';
 import { useCurrStore } from '@/stores';
 
