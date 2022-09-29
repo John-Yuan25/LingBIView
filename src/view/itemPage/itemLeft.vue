@@ -30,7 +30,8 @@ function dragStart(e){
     width: 243px;
     padding:8px;
     .menuItem{
-        background: #eee;
+        background-color: #252527;
+        border-radius: 5px;
         width:100px;
         height:100px;
         float:left;
@@ -38,7 +39,11 @@ function dragStart(e){
         text-align: center;
         line-height: 100px;
         cursor:pointer;
-        
+        color: #fff;
+    }
+    .menuItem:hover{
+        background-color: rgb(61, 59, 59);
+        color: #69dcb5;
     }
 }
 </style>
