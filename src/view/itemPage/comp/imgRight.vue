@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { useImgStore, useCurrStore } from '@/stores'
 import { toRef } from 'vue';
-import { unMountedComponent } from '../../utils/index'
+import { unMountedComponent } from '../../../utils/index'
 
 const props = defineProps([
     'thiscurrComp',

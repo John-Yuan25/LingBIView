@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { useTextStore, useCurrStore } from '@/stores'
 import { toRef } from 'vue';
-import { unMountedComponent } from '../../utils/index'
+import { unMountedComponent } from '../../../utils/index'
 
 const props = defineProps([
     'thiscurrComp',

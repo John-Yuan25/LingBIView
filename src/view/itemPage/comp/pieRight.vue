@@ -56,10 +56,10 @@
 
 <script setup lang="ts">
 import { usePieStore, useCurrStore } from '@/stores'
-import { exportFileJSON, importFileJSON, unMountedComponent } from '../../utils/index'
+import { exportFileJSON, importFileJSON, unMountedComponent } from '../../../utils/index'
 import { ButtonHTMLAttributes, ref, watch, toRefs } from 'vue';
 import selectOption from './selectOption.vue';
-import { getJson } from '../../server'
+import { getJson } from '../../../server'
 
 const props = defineProps([
     'thiscurrComp',

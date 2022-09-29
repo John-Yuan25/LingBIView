@@ -20,12 +20,12 @@
 </template>
 
 <script setup lang="ts">
-import headTab from '../comp/headTab.vue';
-import textRight from '../comp/textRight.vue';
-import imgRight from '../comp/imgRight.vue';
-import categoryLineRight from '../comp/categoryLineRight.vue';
-import categoryBarRight from '../comp/categoryBarRight.vue';
-import pieRight from '../comp/pieRight.vue';
+import headTab from './comp/headTab.vue';
+import textRight from './comp/textRight.vue';
+import imgRight from './comp/imgRight.vue';
+import categoryLineRight from './comp/categoryLineRight.vue';
+import categoryBarRight from './comp/categoryBarRight.vue';
+import pieRight from './comp/pieRight.vue';
 import { ref, watch } from 'vue';
 
 const props = defineProps([
