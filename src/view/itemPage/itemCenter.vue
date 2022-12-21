@@ -254,7 +254,7 @@ function rightClick() {
     background-color: rgb(61, 59, 59);
     position: relative;
     width: 92%;
-    height: 95%;
+    height: 88vh;
     top: 2%;
 
     .borderStyle {
