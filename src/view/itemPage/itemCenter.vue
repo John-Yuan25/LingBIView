@@ -18,11 +18,18 @@ const emit = defineEmits(['currComp'])
 const currStore = useCurrStore()
 let components: Array<any> = reactive([])
 
-//如果currStore里面有没清空的组件，先渲染出来。（用于从预览页面返回重新调节）
+//如果currStore里面有没清空的组件，先渲染出来
+//检查是否有删除标记，有则删除组件
+for(let i=0;i<currStore.Allcomponents.length;i++){
+    if(currStore.Allcomponents[i].info.deleted){
+        currStore.Allcomponents.splice(i,1)
+    }
+}
 components=currStore.Allcomponents
-    components.forEach(item => {
-    mountedComponent(item)
+components.forEach(item => {
+        mountedComponent(item)
 })
+
 
 //拖拽到画布的回调
 function dragOver(e) {
@@ -62,8 +69,8 @@ function drop(e) {
 
     //bug:添加进components数组后，component的id都变成一样的了
     //解决思路：尝试将getComponent方法在这里实现，不用跳到../stores/index
-    components.push(component)
-  
+    components.push(component) 
+
     mountedComponent(component)
     currStore.Allcomponents = components
 }

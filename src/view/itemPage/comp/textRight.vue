@@ -106,7 +106,7 @@ const delectCom = () => {
         height: 30px;
         position: absolute;
         border: 0px;
-        bottom: 10px;
+        bottom: 30px;
         right: 10px;
     }
 }

@@ -96,13 +96,19 @@ export const mountedComponent = (component) => {
 };
 
 //卸载组件
+import { useCurrStore } from '@/stores';
+
 export const unMountedComponent = (component) => {
-  let id = component.info.id;
-  const appNode = document.getElementById(id) as HTMLElement;
-  componentApp.unmount(appNode);
-  if (appNode.parentNode) {
-    appNode.parentNode.removeChild(appNode);
-  }
+  let nodeId = component.info.id;
+  const deleteNode = document.getElementById(nodeId) as HTMLElement;
+  deleteNode.remove();
+  // componentApp.unmount(deleteNode);
+  const currStore = useCurrStore();
+  currStore.deleteCompent(nodeId);
+  
+  // if (deleteNode.parentNode) {
+  //   deleteNode.parentNode.removeChild(deleteNode);
+  // }
 };
 
 //导出json数据

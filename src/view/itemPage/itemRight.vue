@@ -83,7 +83,7 @@ watch(
     }, { immediate: true })
 
 
-const lostComp = (data) => {
+const lostComp = (data:boolean) => {
     if (data) {
         textRightShow.value = false
         imgRightShow.value = false

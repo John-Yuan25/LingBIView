@@ -17,7 +17,6 @@
         <div class="menuItem" draggable="true" :data-type="item.type" :data-name="item.name" @dragstart="dragStart"
             v-for="(item, index) in menus.ChartsMenus" :key="index" v-show="ChartsShow">{{ item.name }}
         </div>
-
     </div>
 </template>
 

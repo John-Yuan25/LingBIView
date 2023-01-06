@@ -14,8 +14,7 @@ import { mountedComponent } from '../utils/index'
 const currStore = useCurrStore()
 let components: Array<any> = currStore.Allcomponents
 components.forEach(item => {
-    console.log(item)
-    mountedComponent(item)
+        mountedComponent(item)
 })
 
 
