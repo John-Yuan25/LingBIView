@@ -71,6 +71,8 @@ const emit = defineEmits([
 const currStore = useCurrStore()
 let categoryLineStore = useCategoryLineStore(currStore.currStoreId)()
 let optionStr = ref(categoryLineStore.option.dataset)
+//zindex属性在父组件上
+const parentNode=document.getElementById(currStore.currStoreId) as HTMLElement;
 
 //监听图表的数据变化,更新optionStr
 watch(() => categoryLineStore.option.dataset, (newValue, oldValue) => {
@@ -95,9 +97,16 @@ function updateComp(e) {
                 key: 'height',
                 value: props.thiscurrComp.attribute[1].value,
                 placeholder: '请输入高度'
+            },{
+                name: '层级',
+                type: 'number',
+                key: 'z-index',
+                value: props.thiscurrComp.attribute[2].value,
             }
         ]
     })
+    parentNode.style.zIndex=props.thiscurrComp.attribute[2].value
+
 }
 
 //传入json数据

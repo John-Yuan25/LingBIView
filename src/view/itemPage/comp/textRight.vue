@@ -34,6 +34,9 @@ const currStore = useCurrStore()
 let textStore = useTextStore(currStore.currStoreId)()
 let dataStr = toRef(textStore, 'data')
 
+//zindex属性在父组件上
+const parentNode=document.getElementById(currStore.currStoreId) as HTMLElement;
+
 //更新组件数据方法
 function updateComp(e) {
     textStore = useTextStore(currStore.currStoreId)()
@@ -60,9 +63,16 @@ function updateComp(e) {
                 type: 'color',
                 key: 'color',
                 value: props.thiscurrComp.attribute[3].value,
+            },{
+                name: '层级',
+                type: 'number',
+                key: 'z-index',
+                value: props.thiscurrComp.attribute[4].value,
             }
+
         ]
     })
+    parentNode.style.zIndex=props.thiscurrComp.attribute[4].value
 }
 //删除组件
 const delectCom = () => {
@@ -82,7 +92,7 @@ const delectCom = () => {
     .styleItem {
         margin: 10px;
         display: flex;
-
+        position: relative;
         .label {
             display: inline-block;
             width: 80px;

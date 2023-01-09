@@ -20,7 +20,13 @@ let storeId = props.id
 const currStore = useCurrStore()
 const categoryLineStore = useCategoryLineStore(storeId)()
 // let attribute: any = toRef(categoryLineStore, 'attribute')
-let { attribute } = toRefs(categoryLineStore)
+let { attribute } :any = toRefs(categoryLineStore)
+
+//zindex属性在父节点
+const parentNode=document.getElementById(storeId) as HTMLElement;
+console.log('parentNode',parentNode);
+parentNode.style.zIndex=attribute.value[2].value; 
+
 
 // let setStyle = computed(() => {
 //     return {
@@ -55,7 +61,7 @@ onMounted(() => {
 watch(() => attribute.value, (newValue, oldValue) => {
     myChart.resize({
         width: attribute.value[0].value,
-        height: attribute.value[1].value
+        height: attribute.value[1].value,
     })
     //更新图表数据
     option = categoryLineStore.option as EChartsOption

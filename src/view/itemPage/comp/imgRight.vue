@@ -32,6 +32,9 @@ const emit = defineEmits([
 const currStore = useCurrStore()
 let imgStore = useImgStore(currStore.currStoreId)()
 let imgUlrStr = toRef(imgStore, 'imgUrl')
+//zindex属性在父组件上
+const parentNode=document.getElementById(currStore.currStoreId) as HTMLElement;
+console.log('parentNode',parentNode.style.zIndex);
 
 //更新组件数据方法
 function updateComp(e) {
@@ -49,9 +52,16 @@ function updateComp(e) {
                 type: 'number',
                 key: 'height',
                 value: props.thiscurrComp.attribute[1].value,
+            }, {
+                name: '层级',
+                type: 'number',
+                key: 'zIndex',
+                value: props.thiscurrComp.attribute[2].value,
             }
         ]
     })
+    parentNode.style.zIndex=props.thiscurrComp.attribute[2].value
+
 }
 //删除组件
 const delectCom = () => {
@@ -71,7 +81,6 @@ const delectCom = () => {
     .styleItem {
         margin: 10px;
         display: flex;
-
         .label {
             display: inline-block;
             width: 80px;

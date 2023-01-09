@@ -18,7 +18,12 @@ let storeId = props.id
 const currStore = useCurrStore()
 const pieStore = usePieStore(storeId)()
 // let styleAttribute: any = toRef(pieStore, 'attribute')
-let { attribute } = toRefs(pieStore)
+let { attribute } :any= toRefs(pieStore)
+
+//zindex属性在父节点
+const parentNode=document.getElementById(storeId) as HTMLElement;
+console.log('parentNode',parentNode);
+parentNode.style.zIndex=attribute.value[2].value; 
 
 
 // let setStyle = computed(() => {

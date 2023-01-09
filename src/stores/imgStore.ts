@@ -17,6 +17,12 @@ export const useImgStore = function (this: any, id: any) {
           key: "height",
           value: 100,
         },
+        {
+          name: "层级",
+          type: "number",
+          key: "zIndex",
+          value: 1,
+        },
       ],
       tag: imgComp,
       imgUrl:

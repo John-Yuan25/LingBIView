@@ -13,7 +13,7 @@ import getComponent from '../../stores/index';
 import { ref, reactive, computed, toRefs } from 'vue';
 import { useCurrStore } from '@/stores';
 
-let zIndex: number = 0;
+let zIndex: number = 1;
 const emit = defineEmits(['currComp'])
 const currStore = useCurrStore()
 let components: Array<any> = reactive([])
@@ -47,7 +47,6 @@ function drop(e) {
     let info = JSON.parse(e.dataTransfer.getData("info"));
     info.id = getId();
     let component = getComponent(info);
-    zIndex++;
     let compWidth = 0;
     let compHeight = 0;
     component.attribute.forEach(item => {
@@ -111,7 +110,6 @@ const setStyleOfBorder = computed(() => {
     let compHeight = ref<number>(0)
     let compLeft = ref<number>(0)
     let compTop = ref<number>(0)
-    let compZIndex = ref<number>(0)
     if (currCompShow.value) {
         try {
              currComp.attribute.forEach(item => {
@@ -123,19 +121,17 @@ const setStyleOfBorder = computed(() => {
             }
             compLeft.value = currComp.position.left;
             compTop.value = currComp.position.top;
-            compZIndex.value = currComp.position.zIndex + 1
         })
         } catch (error) {
             console.log(error);
-        }
-       
+        }    
     }
     return {
         width: `${compWidth.value}px`,
         height: `${compHeight.value}px`,
         left: `${compLeft.value}%`,
         top: `${compTop.value}%`,
-        zIndex: `${compZIndex.value}`,
+
     }
 
 })
@@ -267,6 +263,7 @@ function rightClick() {
     .borderStyle {
         border: 1px solid #5fbf9f;
         position: absolute;
+        z-index: 99999999;
     }
 }
 </style>

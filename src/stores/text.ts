@@ -26,7 +26,12 @@ export const useTextStore =function(this:any,id:any){
                     type:'color',
                     key:'color',
                     value:'#00FFFF',
-                }
+                },{
+                    name:"层级",
+                    type:'number',
+                    key:'z-index',
+                    value:1,
+                },
             ],
             tag:textComp,
             data:'默认文本',

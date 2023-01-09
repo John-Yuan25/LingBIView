@@ -35,7 +35,12 @@ export const useCategoryBarStore = function (this: any, id: any) {
           key: "height",
           value: 300,
           placeholder: "请输入高度",
-        },
+        },{
+          name:"层级",
+          type:'number',
+          key:'z-index',
+          value:1,
+      },
       ],
       tag: categoryBarComp,
       sandShow:false,
