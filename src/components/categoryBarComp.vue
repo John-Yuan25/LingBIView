@@ -49,7 +49,7 @@ onMounted(() => {
     chartDom.addEventListener('click', function () {
         currStore.$patch({
             currStoreId: storeId,
-            type: 'categoryLineComp'
+            type: 'categoryBarComp'
         })
     })
     myChart = echarts.init(chartDom);

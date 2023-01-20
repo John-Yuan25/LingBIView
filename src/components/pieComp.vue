@@ -50,7 +50,7 @@ onMounted(() => {
     chartDom.addEventListener('click', function () {
         currStore.$patch({
             currStoreId: storeId,
-            type: 'categoryLineComp'
+            type: 'pieComp'
         })
     })
     myChart = echarts.init(chartDom);
