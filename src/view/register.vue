@@ -7,21 +7,24 @@
                 </div>
                 <div class="userBox">
                     <div>
-                        <label><i class="iconfont icon-yonghu"></i></label>
+                        <label>用户名:</label>
                         <input type="text" id="user" v-model="userName">
                     </div>
                 </div>
                 <div class="passwordBox">
                     <div>
-                        <label><i class="iconfont icon-suoding"></i></label>
+                        <label>密码:</label>
                         <input type="password" id="psw" v-model="password">
                     </div>
                 </div>
-                <div class="butBox">
-                    <button @click="login">登录</button>
+                <div class="passwordCheckingBox">
+                    <div>
+                        <label>确认密码:</label>
+                        <input type="password" id="psw" v-model="passwordChecking">
+                    </div>
                 </div>
                 <div class="butBox">
-                    <button @click="toRegister">注册</button>
+                    <button @click="register">注册</button>
                 </div>
             </form>
         </div>
@@ -33,45 +36,41 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import bg from '../assets/bg.jpg'
 import logoImg from '../assets/logo.png'
-import { checkUser } from '../server'
+import { createUser } from '../server'
 
 const router = useRouter()
-let userName = ref<string>('admin')
-let password = ref<string>('123456')
+let userName = ref<string>('')
+let password = ref<string>('')
+let passwordChecking = ref<string>('');
+async function register() {
+    // 注册验证（本地）
+    if (userName.value == '') {
+        alert('用户名不能为空！')
 
-async function login() {
-    // 发送登录请求验证，返回的result为token
-    const promise = new Promise(async (resolve, reject) => {
-        try {
-            let result: string = await checkUser(userName.value, password.value) as string
-            resolve(result)
-        } catch (error) {
-            reject(error)
-        }
-    }).then(value => {
-        sessionStorage.setItem("token", value as string)
-        router.push({
-            path: '/item'
+    }else if(password.value== ''){
+        alert('密码不能为空！')
+    }
+     else if (password.value !== passwordChecking.value) {
+        alert('密码不一致！')
+    } else {
+        // 发送登录请求验证，返回的result为token
+        const promise = new Promise(async (resolve, reject) => {
+            try {
+                let result: string = await createUser(userName.value, password.value) as string
+                resolve(result)
+            } catch (error) {
+                reject(error)
+            }
+        }).then(value => {
+            alert(value)
+            router.push({
+                path: '/'
+            })
+        }, err => {
+            alert(err);
         })
-    }, err => {
-        alert('用户名或密码错误！'+err)
-    })
 
-
-    // 无后台登录验证（临时）
-    // if (userName.value === "admin" && password.value === '123456') {
-    //     sessionStorage.setItem("token", 'temporary')
-    //     router.push({
-    //         path: '/item'
-    //     })
-    // } else {
-    //     alert('请使用默认账号密码登录')
-    // }
-}
-function toRegister(){
-    router.push({
-            path: '/register'
-        })
+    }
 }
 
 </script>
@@ -129,6 +128,43 @@ function toRegister(){
 
     .userBox,
     .passwordBox {
+        flex: 1;
+        padding: 0px 5% 0px 5%;
+        color: #fff;
+
+        div {
+            width: 100%;
+            height: 90%;
+            background-color: rgba(53, 59, 66, 0.8);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        div:hover {
+            border: 1px solid #69dcb5;
+        }
+
+        label {
+            position: relative;
+            margin-left: 5%;
+            top: 30%;
+
+        }
+
+        input {
+            position: absolute;
+            font-size: 20px;
+            margin-left: 1%;
+            top: 30%;
+        }
+
+        i {
+            font-size: 20px;
+        }
+    }
+
+    .passwordCheckingBox {
         flex: 1;
         padding: 0px 5% 0px 5%;
         color: #fff;

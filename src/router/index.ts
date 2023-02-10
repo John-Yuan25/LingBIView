@@ -9,6 +9,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     component: () => import('../view/login.vue')
+  },  
+  {
+    path: '/register',
+    component: () => import('../view/register.vue')
   },
   {
     path:'/item',
@@ -30,7 +34,7 @@ const router = createRouter({
 router.beforeEach((to,from,next)=>{
   //验证token，只有存在token的时候，才能跳转到工作区
   let token=sessionStorage.getItem("token")
-  if(token || to.path==='/'){
+  if(token || to.path==='/'||to.path==='/register'){
     next();
   }else{
     next('/')

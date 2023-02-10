@@ -12,12 +12,33 @@ export const checkUser = (name: string, pass: string) => {
     params.append("username", name);
     params.append("password", pass);
     let result: string = "";
-    server.post("/api/user", params).then((res) => {
+    server.post("/api/checkUser", params).then((res) => {
       if (res.data.status === 1) {
         result = res.data.token;
         resolve(result)
       } else {
         result = "登录失败";
+        reject(result)
+      }
+    });
+  });
+};
+export const createUser = (name: string, pass: string) => {
+  return new Promise((resolve, reject) => {
+    let params = new URLSearchParams();
+    params.append("username", name);
+    params.append("password", pass);
+    let result: Object;
+    server.post("/api/createUser", params).then((res) => {
+      if (res.data.status === 1) {
+        if(res.data.wrong){
+          result = res.data.message;
+          reject(result)
+        }
+        result = res.data.message;
+        resolve(result)
+      } else {
+        result = res.data.message;
         reject(result)
       }
     });
