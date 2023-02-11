@@ -22,6 +22,9 @@ const ChartsMenus=[{
 },{
     type:'pieComp',
     name:'饼图'
+},{
+    type:'scatterComp',
+    name:'散点图'
 },
 ]
 

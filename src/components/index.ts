@@ -4,6 +4,7 @@ import categoryLineComp from './categoryLineComp.vue'
 import categoryBarComp from './categoryBarComp.vue'
 import pieComp from './pieComp.vue'
 import divComp from './divComp.vue'
+import scatterComp from './scatterComp.vue'
 
 //定义组件对象
 let obj={
@@ -12,7 +13,8 @@ let obj={
     categoryLineComp,
     categoryBarComp,
     pieComp,
-    divComp
+    divComp,
+    scatterComp
 }
 //组件注册方法
 function install(App){
