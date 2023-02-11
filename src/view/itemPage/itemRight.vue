@@ -7,6 +7,8 @@
             </textRight>
             <imgRight v-if="imgRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" @lostComp="lostComp">
             </imgRight>
+            <divRight v-if="divRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" @lostComp="lostComp">
+            </divRight>
             <categoryLineRight v-if="categoryLineRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex"
                 @lostComp="lostComp"></categoryLineRight>
             <categoryBarRight v-if="categoryBarRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex"
@@ -26,6 +28,7 @@ import imgRight from './comp/imgRight.vue';
 import categoryLineRight from './comp/categoryLineRight.vue';
 import categoryBarRight from './comp/categoryBarRight.vue';
 import pieRight from './comp/pieRight.vue';
+import divRight from './comp/divRight.vue';
 import { ref, watch } from 'vue';
 
 const props = defineProps([
@@ -42,6 +45,7 @@ let imgRightShow = ref<boolean>(false)
 let categoryLineRightShow = ref<boolean>(false)
 let categoryBarRightShow = ref<boolean>(false)
 let pieRightShow = ref<boolean>(false)
+let divRightShow = ref<boolean>(false)
 
 watch(
     () => props.mycurrComp,
@@ -54,6 +58,7 @@ watch(
         categoryLineRightShow.value = false
         categoryBarRightShow.value = false
         pieRightShow.value = false
+        divRightShow.value = false
         showDefault.value = true
         //选中哪个子组件异步显示哪个
         if (newValue) {
@@ -78,6 +83,10 @@ watch(
                     showDefault.value = false
                     pieRightShow.value = true
                 }
+                if (props.mycurrComp.info.type === 'divComp') {
+                    showDefault.value = false
+                    divRightShow.value = true
+                }
             }, 0)
         }
     }, { immediate: true })
@@ -90,6 +99,7 @@ const lostComp = (data:boolean) => {
         categoryLineRightShow.value = false
         categoryBarRightShow.value = false
         pieRightShow.value = false
+        divRightShow.value = false
         showDefault.value = true
     }
 }

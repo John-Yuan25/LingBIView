@@ -3,9 +3,14 @@
 const BasicMenus=[{
     type:'textComp',
     name:'文本组件'
-},{
+},
+{
     type:'imgComp',
     name:'图片组件'
+},
+{
+    type:'divComp',
+    name:'盒子组件'
 },
 ]
 const ChartsMenus=[{
