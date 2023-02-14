@@ -72,7 +72,7 @@ const currStore = useCurrStore()
 let scatterStore = useScatterStore(currStore.currStoreId)()
 let optionStr = ref(scatterStore.option.series[0].data)
 //zindex属性在父组件上
-const parentNode=document.getElementById(currStore.currStoreId) as HTMLElement;
+const parentNode = document.getElementById(currStore.currStoreId) as HTMLElement;
 
 //监听图表的数据变化,更新optionStr
 watch(() => scatterStore.option.series[0].data, (newValue, oldValue) => {
@@ -97,7 +97,7 @@ function updateComp(e) {
                 key: 'height',
                 value: props.thiscurrComp.attribute[1].value,
                 placeholder: '请输入高度'
-            },{
+            }, {
                 name: '层级',
                 type: 'number',
                 key: 'z-index',
@@ -105,7 +105,7 @@ function updateComp(e) {
             }
         ]
     })
-    parentNode.style.zIndex=props.thiscurrComp.attribute[2].value
+    parentNode.style.zIndex = props.thiscurrComp.attribute[2].value
 }
 
 //传入json数据
@@ -223,6 +223,8 @@ const delectCom = () => {
         currStore.currCompShow = false
         //卸载组件
         unMountedComponent(props.thiscurrComp)
+        //删除本地存储的当前组件数据
+        localStorage.removeItem(currStore.currStoreId)
     }
 
 }

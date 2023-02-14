@@ -14,7 +14,7 @@ import { useCategoryLineStore, useCurrStore } from '@/stores';
 const props = defineProps([
     'id'
 ])
-
+ 
 let storeId = props.id
 
 const currStore = useCurrStore()

@@ -17,7 +17,7 @@ export const useCategoryLineStore = function (this: any, id: any) {
             { product: "Sun", data1: 130 },
           ],
         },
-        series:[{type:"line"}],
+        series: [{ type: "line" }],
         xAxis: { type: "category" },
         yAxis: { type: "value" },
       },
@@ -35,28 +35,32 @@ export const useCategoryLineStore = function (this: any, id: any) {
           key: "height",
           value: 300,
           placeholder: "请输入高度",
-        },{
-          name:"层级",
-          type:'number',
-          key:'z-index',
-          value:1,
-      },
+        },
+        {
+          name: "层级",
+          type: "number",
+          key: "z-index",
+          value: 1,
+        },
       ],
       tag: categoryLineComp,
-      sandShow:false,
-      ajaxUrl:'',
-      currDataSource:'静态数据',
-      timeout:<unknown>undefined,
-      ajaxMethod:'get',
-      timer:<any>null
+      sandShow: false,
+      ajaxUrl: "",
+      currDataSource: "静态数据",
+      timeout: <unknown>undefined,
+      ajaxMethod: "get",
+      timer: <any>null,
     }),
-    getters: {
-      
-    },
+    getters: {},
     actions: {
       importOption(data) {
-        this.option.dataset =data
+        this.option.dataset = data;
       },
+    },
+    // persist: true,
+    persist: {
+      key: id,
+      // storage: window.sessionStorage,////保存的位置,默认是localstorage
     },
   });
 };

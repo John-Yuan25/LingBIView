@@ -74,6 +74,8 @@ const delectCom = () => {
         currStore.currCompShow = false
         //卸载组件
         unMountedComponent(props.thiscurrComp)
+        //删除本地存储的当前组件数据
+        localStorage.removeItem(currStore.currStoreId)
     }
 }
 </script>

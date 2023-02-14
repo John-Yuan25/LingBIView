@@ -1,6 +1,12 @@
 //工具函数
 import { createApp } from "vue";
-
+import textComp from '../components/textComp.vue'
+import categoryBarComp from '../components/categoryBarComp.vue'
+import categoryLineComp from '../components/categoryLineComp.vue'
+import divComp from '../components/divComp.vue'
+import imgComp from '../components/imgComp.vue'
+import pieComp from '../components/pieComp.vue'
+import scatterComp from '../components/scatterComp.vue'
 //获取样式
 let getAttrStr = (attrs) => {
   let attrStr = "";
@@ -58,7 +64,29 @@ export const mountedComponent = (component) => {
     //   this.$el.style.height = `${compHeight}px`;
     // }
     // })
-    componentApp = createApp(component.tag, {
+    let thisComp;
+    if(component.info.type=='textComp'){
+      thisComp=textComp;
+    }
+    if(component.info.type=='categoryBarComp'){
+      thisComp=categoryBarComp;
+    }
+    if(component.info.type=='categoryLineComp'){
+      thisComp=categoryLineComp;
+    }
+    if(component.info.type=='divComp'){
+      thisComp=divComp;
+    }
+    if(component.info.type=='imgComp'){
+      thisComp=imgComp;
+    }
+    if(component.info.type=='pieComp'){
+      thisComp=pieComp;
+    }
+    if(component.info.type=='scatterComp'){
+      thisComp=scatterComp;
+    }
+    componentApp = createApp(thisComp, {
       name: id.toString(),
       id: id,
       props:[

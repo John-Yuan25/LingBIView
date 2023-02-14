@@ -2,7 +2,7 @@
     <div id="canvasBox" class="wrapper" @dragover="dragOver" @drop="drop" @click="checkComp">
         <!-- 设置组件的挂载点 -->
         <div :id="item.info.id" v-for="(item, index) in components" :key="index"></div>
-        <div id="borderBox" @mousedown="mouseDownStart" class="borderStyle" v-if="currCompShow"
+        <div id="borderBox" @mousedown="mouseDownStart" class="borderStyle" v-show="currCompShow"
             :style="(setStyleOfBorder as any)" @contextmenu.prevent="rightClick">
             <div id="borderDot1" @mousedown="changeSizeStart"></div>
             <div id="borderDot2" @mousedown="changeSizeStart"></div>
@@ -75,8 +75,7 @@ function drop(e) {
     component.position = { left, top, zIndex }
     //将处理好的组建添加到组建数组
 
-    //bug:添加进components数组后，component的id都变成一样的了
-    //解决思路：尝试将getComponent方法在这里实现，不用跳到../stores/index
+ 
     components.push(component)
 
     mountedComponent(component)

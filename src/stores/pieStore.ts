@@ -46,14 +46,14 @@ export const usePieStore = function (this: any, id: any) {
           },
         ],
         tooltip: {
-          trigger: 'item'
+          trigger: "item",
         },
         legend: {
-          top: '5%',
-          left: 'center',
-          textStyle:{
-            color:'#fff'
-          }
+          top: "5%",
+          left: "center",
+          textStyle: {
+            color: "#fff",
+          },
         },
       },
       attribute: [
@@ -70,12 +70,13 @@ export const usePieStore = function (this: any, id: any) {
           key: "height",
           value: 300,
           placeholder: "请输入高度",
-        },{
-          name:"层级",
-          type:'number',
-          key:'z-index',
-          value:1,
-      },
+        },
+        {
+          name: "层级",
+          type: "number",
+          key: "z-index",
+          value: 1,
+        },
       ],
       tag: pieComp,
       sandShow: false,
@@ -90,6 +91,11 @@ export const usePieStore = function (this: any, id: any) {
       importOption(data) {
         this.option.dataset = data;
       },
+    },
+    // persist: true,
+    persist: {
+      key: id,
+      // storage: window.sessionStorage,////保存的位置,默认是localstorage
     },
   });
 };

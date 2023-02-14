@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import textComp from '../components/textComp.vue'
 
 export const useCurrStore = defineStore({
   id: "currStore",
@@ -7,6 +8,7 @@ export const useCurrStore = defineStore({
     type: "",
     currCompShow: false,
     Allcomponents: <any>[],
+    textComp
   }),
   getters: {},
   actions: {
@@ -27,10 +29,10 @@ export const useCurrStore = defineStore({
     }
   },
 //   persist: true,
-  // persist: {
-  //   key: "currStore",
-  //   storage: window.sessionStorage, ////保存的位置,默认是localstorage
-  // },
+  persist: {
+    key: "currStore",
+    // storage: window.sessionStorage, //保存的位置,默认是localstorage
+  },
 });
 
 export default useCurrStore;

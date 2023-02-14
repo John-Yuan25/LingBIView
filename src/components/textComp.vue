@@ -14,7 +14,7 @@ const props = defineProps([
 ])
 
 let storeId= props.id
-
+    
 
 const currStore=useCurrStore()
 

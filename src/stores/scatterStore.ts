@@ -33,11 +33,11 @@ export const useScatterStore = function (this: any, id: any) {
               [12.0, 6.26],
               [12.0, 8.84],
               [7.08, 5.82],
-              [5.02, 5.68]
+              [5.02, 5.68],
             ],
-            type: 'scatter'
-          }
-        ]
+            type: "scatter",
+          },
+        ],
       },
       attribute: [
         {
@@ -53,12 +53,13 @@ export const useScatterStore = function (this: any, id: any) {
           key: "height",
           value: 300,
           placeholder: "请输入高度",
-        },{
-          name:"层级",
-          type:'number',
-          key:'z-index',
-          value:1,
-      },
+        },
+        {
+          name: "层级",
+          type: "number",
+          key: "z-index",
+          value: 1,
+        },
       ],
       tag: scatterComp,
       sandShow: false,
@@ -73,6 +74,11 @@ export const useScatterStore = function (this: any, id: any) {
       importOption(data) {
         this.option.series[0].data = data;
       },
+    },
+    // persist: true,
+    persist: {
+      key: id,
+      // storage: window.sessionStorage,////保存的位置,默认是localstorage
     },
   });
 };

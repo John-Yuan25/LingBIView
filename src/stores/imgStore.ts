@@ -25,11 +25,15 @@ export const useImgStore = function (this: any, id: any) {
         },
       ],
       tag: imgComp,
-      imgUrl:
-        "https://v2.cn.vuejs.org/images/logo.svg",
+      imgUrl: "https://v2.cn.vuejs.org/images/logo.svg",
     }),
     getters: {},
     actions: {},
+    // persist: true,
+    persist: {
+      key: id,
+      // storage: window.sessionStorage,////保存的位置,默认是localstorage
+    },
   });
 };
 

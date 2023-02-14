@@ -39,10 +39,10 @@ export const useDivStore =function(this:any,id:any){
           
         },
         // persist: true,
-        // persist: {
-        //     key: id,
-        //     storage: window.sessionStorage,////保存的位置,默认是localstorage
-        //   },
+        persist: {
+            key: id,
+            // storage: window.sessionStorage,////保存的位置,默认是localstorage
+          },
       })
 }
 
