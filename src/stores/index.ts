@@ -1,4 +1,5 @@
 export * from './currStore'
+export * from './userItems'
 
 export * from './text'
 export * from './imgStore'

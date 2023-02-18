@@ -12,17 +12,17 @@ import * as echarts from 'echarts';
 import { useScatterStore, useCurrStore } from '@/stores';
 
 const props = defineProps([
-    'id'
+    'id',
+    'currStoreId'
 ])
 let storeId = props.id
-const currStore = useCurrStore()
+const currStore = useCurrStore(props.currStoreId)()
 const scatterStore = useScatterStore(storeId)()
 // let styleAttribute: any = toRef(pieStore, 'attribute')
 let { attribute } :any= toRefs(scatterStore)
 
 //zindex属性在父节点
 const parentNode=document.getElementById(storeId) as HTMLElement;
-console.log('parentNode',parentNode);
 parentNode.style.zIndex=attribute.value[2].value; 
 
 

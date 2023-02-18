@@ -10,8 +10,9 @@
 <script setup lang="ts">
 import { useCurrStore } from '@/stores';
 import { mountedComponent } from '../utils/index'
-
-const currStore = useCurrStore()
+import { useRoute } from 'vue-router'
+const route = useRoute()
+const currStore = useCurrStore(route.query.currStoreId)()
 let components: Array<any> = currStore.Allcomponents
 components.forEach(item => {
         mountedComponent(item)

@@ -1,7 +1,7 @@
 <template>
     <div id="canvasBox" class="wrapper" @dragover="dragOver" @drop="drop" @click="checkComp">
         <!-- 设置组件的挂载点 -->
-        <div :id="item.info.id" v-for="(item, index) in components" :key="index"></div>
+        <div :id="item.info.id" :currStoreId="props.storeId" v-for="(item, index) in components" :key="index"></div>
         <div id="borderBox" @mousedown="mouseDownStart" class="borderStyle" v-show="currCompShow"
             :style="(setStyleOfBorder as any)" @contextmenu.prevent="rightClick">
             <div id="borderDot1" @mousedown="changeSizeStart"></div>
@@ -22,9 +22,13 @@ import getComponent from '../../stores/index';
 import { ref, reactive, computed, toRefs } from 'vue';
 import { useCurrStore, useCategoryBarStore, useCategoryLineStore, usePieStore } from '@/stores';
 
+const props = defineProps([
+    'storeId'
+])
+
 let zIndex: number = 1;
 const emit = defineEmits(['currComp'])
-const currStore = useCurrStore()
+const currStore = useCurrStore(props.storeId)()
 let components: Array<any> = reactive([])
 
 //如果currStore里面有没清空的组件，先渲染出来
@@ -55,6 +59,7 @@ function drop(e) {
     //获取和设置组件信息
     let info = JSON.parse(e.dataTransfer.getData("info"));
     info.id = getId();
+    info.currStoreId=props.storeId;
     let component = getComponent(info);
     let compWidth = 0;
     let compHeight = 0;
@@ -74,10 +79,8 @@ function drop(e) {
     top = top / canvasHeight * 100
     component.position = { left, top, zIndex }
     //将处理好的组建添加到组建数组
-
- 
     components.push(component)
-
+    //挂载组件
     mountedComponent(component)
     currStore.Allcomponents = components
 }

@@ -12,17 +12,18 @@ import * as echarts from 'echarts';
 import { useCategoryBarStore, useCurrStore } from '@/stores';
 
 const props = defineProps([
-    'id'
+    'id',
+    'currStoreId'
 ])
 let storeId = props.id
-const currStore = useCurrStore()
+const currStore = useCurrStore(props.currStoreId)()
 const categoryBarStore = useCategoryBarStore(storeId)()
 // let styleAttribute: any = toRef(categoryBarStore, 'attribute')
 let { attribute } :any= toRefs(categoryBarStore)
 
 //zindex属性在父节点
 const parentNode=document.getElementById(storeId) as HTMLElement;
-console.log('parentNode',parentNode);
+
 parentNode.style.zIndex=attribute.value[2].value; 
 
 

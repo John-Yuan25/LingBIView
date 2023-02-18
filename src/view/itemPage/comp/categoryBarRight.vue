@@ -64,11 +64,12 @@ import { getJson } from '../../../server'
 const props = defineProps([
     'thiscurrComp',
     'checkIndex',
+    'storeId'
 ])
 const emit = defineEmits([
     'lostComp',
 ])
-const currStore = useCurrStore()
+const currStore = useCurrStore(props.storeId)()
 let categoryBarStore = useCategoryBarStore(currStore.currStoreId)()
 let optionStr = ref(categoryBarStore.option.dataset)
 //zindex属性在父组件上
@@ -222,7 +223,7 @@ const delectCom = () => {
         emit('lostComp', true)
         currStore.currCompShow = false
         //卸载组件
-        unMountedComponent(props.thiscurrComp)
+        unMountedComponent(props.thiscurrComp,props.storeId)
         //删除本地存储的当前组件数据
         localStorage.removeItem(currStore.currStoreId)
     }

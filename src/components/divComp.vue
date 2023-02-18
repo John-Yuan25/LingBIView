@@ -11,10 +11,11 @@ import { useDivStore, useCurrStore } from '@/stores';
 import { toRef } from 'vue';
 
 const props = defineProps([
-    'id'
+    'id',
+    'currStoreId'
 ])
 let storeId= props.id
-const currStore = useCurrStore()
+const currStore = useCurrStore(props.currStoreId)()
 const divStore = useDivStore(storeId)()
 let styleAttribute: any = toRef(divStore, 'attribute')
 //zindex属性在父节点

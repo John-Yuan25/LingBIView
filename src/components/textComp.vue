@@ -10,13 +10,14 @@ import {useTextStore,useCurrStore} from '@/stores';
 import { toRef} from 'vue';
 
 const props = defineProps([
-    'id'
+    'id',
+    'currStoreId'
 ])
 
 let storeId= props.id
-    
 
-const currStore=useCurrStore()
+
+const currStore=useCurrStore(props.currStoreId)()
 
 const textStore=useTextStore(storeId)()
 let styleAttribute:any=toRef(textStore,'attribute')
@@ -24,7 +25,6 @@ let data=toRef(textStore,'data')
 
 //zindex属性在父节点
 const parentNode=document.getElementById(storeId) as HTMLElement;
-console.log('parentNode',typeof parentNode.style.zIndex);
 parentNode.style.zIndex=styleAttribute.value[4].value; 
 
 let setStyle=computed(()=>{

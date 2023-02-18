@@ -28,15 +28,18 @@
                 </div>
             </form>
         </div>
-    </div>
+</div>
 </template>
 
 <script setup lang="ts">
+
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import bg from '../assets/bg.jpg'
 import logoImg from '../assets/logo.png'
 import { createUser } from '../server'
+import { userItemsStore } from '@/stores';
+
 
 const router = useRouter()
 let userName = ref<string>('')
@@ -47,10 +50,10 @@ async function register() {
     if (userName.value == '') {
         alert('用户名不能为空！')
 
-    }else if(password.value== ''){
+    } else if (password.value == '') {
         alert('密码不能为空！')
     }
-     else if (password.value !== passwordChecking.value) {
+    else if (password.value !== passwordChecking.value) {
         alert('密码不一致！')
     } else {
         // 发送登录请求验证，返回的result为token
@@ -63,6 +66,7 @@ async function register() {
             }
         }).then(value => {
             alert(value)
+            const textStore = userItemsStore(userName.value)()
             router.push({
                 path: '/'
             })

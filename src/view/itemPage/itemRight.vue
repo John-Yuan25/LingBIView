@@ -3,19 +3,19 @@
         <headTab :checkIndex="checkIndex" @checkTabChange="checkTabChange"></headTab>
         <!-- 选中了组件再出现配置栏 -->
         <div v-if="mycurrComp">
-            <textRight v-if="textRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" @lostComp="lostComp">
+            <textRight v-if="textRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="props.storeId" @lostComp="lostComp">
             </textRight>
-            <imgRight v-if="imgRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" @lostComp="lostComp">
+            <imgRight v-if="imgRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="props.storeId" @lostComp="lostComp">
             </imgRight>
-            <divRight v-if="divRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" @lostComp="lostComp">
+            <divRight v-if="divRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="props.storeId" @lostComp="lostComp">
             </divRight>
-            <categoryLineRight v-if="categoryLineRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex"
+            <categoryLineRight v-if="categoryLineRightShow" :thiscurrComp="thiscurrComp" :storeId="props.storeId" :checkIndex="checkIndex"
                 @lostComp="lostComp"></categoryLineRight>
-            <categoryBarRight v-if="categoryBarRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex"
+            <categoryBarRight v-if="categoryBarRightShow" :thiscurrComp="thiscurrComp" :storeId="props.storeId" :checkIndex="checkIndex"
                 @lostComp="lostComp"></categoryBarRight>
-            <pieRight v-if="pieRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" @lostComp="lostComp">
+            <pieRight v-if="pieRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="props.storeId" @lostComp="lostComp">
             </pieRight>
-            <scatterRight v-if="scatterRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" @lostComp="lostComp">
+            <scatterRight v-if="scatterRightShow" :thiscurrComp="thiscurrComp" :storeId="props.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
             </scatterRight>
         </div>
         <!-- 没选中组件的情况 -->
@@ -35,7 +35,8 @@ import scatterRight from './comp/scatterRight.vue';
 import { ref, watch } from 'vue';
 
 const props = defineProps([
-    'mycurrComp'
+    'mycurrComp',
+    'storeId'
 ])
 let thiscurrComp = ref<null>(null)
 let checkIndex = ref<number>(0)

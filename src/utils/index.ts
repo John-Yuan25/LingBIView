@@ -33,6 +33,7 @@ let componentApp: any;
 export const mountedComponent = (component) => {
   let data = {};
   let id = component.info.id;
+  let currStoreId=component.info.currStoreId
   let compWidth = 0;
   let compHeight = 0;
   if (component.attribute) {
@@ -89,8 +90,10 @@ export const mountedComponent = (component) => {
     componentApp = createApp(thisComp, {
       name: id.toString(),
       id: id,
+      currStoreId:currStoreId,
       props:[
-        id
+        id,
+        currStoreId
       ]
       // render(){
       //   return h('textComp',{
@@ -126,12 +129,12 @@ export const mountedComponent = (component) => {
 //卸载组件
 import { useCurrStore } from '@/stores';
 
-export const unMountedComponent = (component) => {
+export const unMountedComponent = (component,currStoreId) => {
   let nodeId = component.info.id;
   const deleteNode = document.getElementById(nodeId) as HTMLElement;
   deleteNode.remove();
   // componentApp.unmount(deleteNode);
-  const currStore = useCurrStore();
+  const currStore = useCurrStore(currStoreId)();
   currStore.deleteCompent(nodeId);
   
   // if (deleteNode.parentNode) {
