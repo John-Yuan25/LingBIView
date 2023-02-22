@@ -41,34 +41,34 @@ let password = ref<string>('123456')
 
 async function login() {
     // 发送登录请求验证，返回的result为token
-    const promise = new Promise(async (resolve, reject) => {
-        try {
-            let result: string = await checkUser(userName.value, password.value) as string
-            resolve(result)
-        } catch (error) {
-            reject(error)
-        }
-    }).then(value => {
-        sessionStorage.setItem("token", value as string)
-        sessionStorage.setItem("userName", userName.value)
-        router.push({
-            path: '/myItems'
-        })
-    }, err => {
-        alert('用户名或密码错误！'+err)
-    })
-
-
-    // 无后台登录验证（临时）
-    // if (userName.value === "admin" && password.value === '123456') {
-    //     sessionStorage.setItem("token", 'temporary')
+    // const promise = new Promise(async (resolve, reject) => {
+    //     try {
+    //         let result: string = await checkUser(userName.value, password.value) as string
+    //         resolve(result)
+    //     } catch (error) {
+    //         reject(error)
+    //     }
+    // }).then(value => {
+    //     sessionStorage.setItem("token", value as string)
     //     sessionStorage.setItem("userName", userName.value)
     //     router.push({
     //         path: '/myItems'
     //     })
-    // } else {
-    //     alert('请使用默认账号密码登录')
-    // }
+    // }, err => {
+    //     alert('用户名或密码错误！'+err)
+    // })
+
+
+    // 无后台登录验证（临时）
+    if (userName.value === "admin" && password.value === '123456') {
+        sessionStorage.setItem("token", 'temporary')
+        sessionStorage.setItem("userName", userName.value)
+        router.push({
+            path: '/myItems'
+        })
+    } else {
+        alert('请使用默认账号密码登录')
+    }
 }
 function toRegister(){
     router.push({
