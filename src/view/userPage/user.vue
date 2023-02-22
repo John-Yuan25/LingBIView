@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="logo">
-                <img src="src\assets\logo.png" alt="">
+                <img :src="logoImg" alt="">
                 <h3>LingBIView</h3>
             </div>
         </header>
@@ -40,6 +40,7 @@
 import { useRouter } from 'vue-router'
 import { ref, reactive } from 'vue';
 import { userItemsStore } from '@/stores';
+import logoImg from '../../assets/logo.png'
 
 const router = useRouter()
 
