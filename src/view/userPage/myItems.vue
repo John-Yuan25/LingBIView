@@ -29,7 +29,7 @@ import { reactive } from 'vue';
 import { userItemsStore,useCurrStore } from '@/stores';
 import { getId } from '../../utils/index'
 import { useRouter } from 'vue-router'
-import itemImg from '../../assets/itemImg.png'
+import itemImg from '../../assets/ItemImg.png'
 
 const router = useRouter()
 let username = sessionStorage.getItem('userName');
