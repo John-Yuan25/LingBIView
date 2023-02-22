@@ -3,7 +3,7 @@
         <div class="itemBox" v-for="(item, index) in itemArr" :key="index">
             <div class="upInner">
                 <div class="left">
-                    <img src="public\项目截图（工作区）.png" alt="">
+                    <img :src="itemImg" alt="">
                 </div>
                 <div class="right">
                     <div class="edit" @click="toEdit(item)">编辑</div>
@@ -24,18 +24,19 @@
 
     </div>
 </template>
-
 <script setup lang="ts">
 import { reactive } from 'vue';
 import { userItemsStore,useCurrStore } from '@/stores';
 import { getId } from '../../utils/index'
 import { useRouter } from 'vue-router'
+import itemImg from '../../assets/itemImg.png'
 
 const router = useRouter()
 let username = sessionStorage.getItem('userName');
 const textStore = userItemsStore(username)();
 let itemArr: Array<any> = reactive([])
 itemArr = textStore.items;
+
 
 //前往编辑页
 const toEdit = function (item) {
