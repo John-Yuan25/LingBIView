@@ -42,8 +42,9 @@ itemArr = textStore.items;
 const toEdit = function (item) {
     router.push({
         name: 'item',
-        params:{
-			storeId:item.storeId
+        query:{
+			storeId:item.storeId,
+            itemName:item.itemName
 		}
     })
 }

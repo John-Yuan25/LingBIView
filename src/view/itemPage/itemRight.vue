@@ -1,21 +1,21 @@
 <template>
     <div class="wrapper">
-        <headTab :checkIndex="checkIndex" @checkTabChange="checkTabChange"></headTab>
+        <headTab class="top" :checkIndex="checkIndex" @checkTabChange="checkTabChange"></headTab>
         <!-- 选中了组件再出现配置栏 -->
         <div v-if="mycurrComp">
-            <textRight v-if="textRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="props.storeId" @lostComp="lostComp">
+            <textRight v-if="textRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="route.query.storeId" @lostComp="lostComp">
             </textRight>
-            <imgRight v-if="imgRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="props.storeId" @lostComp="lostComp">
+            <imgRight v-if="imgRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="route.query.storeId" @lostComp="lostComp">
             </imgRight>
-            <divRight v-if="divRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="props.storeId" @lostComp="lostComp">
+            <divRight v-if="divRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="route.query.storeId" @lostComp="lostComp">
             </divRight>
-            <categoryLineRight v-if="categoryLineRightShow" :thiscurrComp="thiscurrComp" :storeId="props.storeId" :checkIndex="checkIndex"
+            <categoryLineRight v-if="categoryLineRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex"
                 @lostComp="lostComp"></categoryLineRight>
-            <categoryBarRight v-if="categoryBarRightShow" :thiscurrComp="thiscurrComp" :storeId="props.storeId" :checkIndex="checkIndex"
+            <categoryBarRight v-if="categoryBarRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex"
                 @lostComp="lostComp"></categoryBarRight>
-            <pieRight v-if="pieRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="props.storeId" @lostComp="lostComp">
+            <pieRight v-if="pieRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="route.query.storeId" @lostComp="lostComp">
             </pieRight>
-            <scatterRight v-if="scatterRightShow" :thiscurrComp="thiscurrComp" :storeId="props.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
+            <scatterRight v-if="scatterRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
             </scatterRight>
         </div>
         <!-- 没选中组件的情况 -->
@@ -33,10 +33,11 @@ import pieRight from './comp/pieRight.vue';
 import divRight from './comp/divRight.vue';
 import scatterRight from './comp/scatterRight.vue';
 import { ref, watch } from 'vue';
+import { useRoute} from 'vue-router'
+const route=useRoute();
 
 const props = defineProps([
     'mycurrComp',
-    'storeId'
 ])
 let thiscurrComp = ref<null>(null)
 let checkIndex = ref<number>(0)
@@ -118,6 +119,11 @@ const lostComp = (data: boolean) => {
 
 <style scoped lang="less">
 .wrapper {
-    width: 300px;
+    width: 100%;
+    height: 100%;
+    .top{
+        height: 51px;
+        width: 100%;
+    }
 }
 </style>

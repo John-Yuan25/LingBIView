@@ -47,7 +47,7 @@ function check(item) {
 <style scoped lang="less">
 .checkBox {
     position: absolute;
-
+    width: 50%;
     span {
         display: inline-block;
         width: 100%;
@@ -74,12 +74,12 @@ function check(item) {
         li {
             cursor: pointer;
             padding-left: 5px;
-            background-color: rgb(247, 248, 247);
+            background-color: rgb(95, 97, 95);
         }
 
         li:hover {
             color: rgb(48, 207, 173);
-            background-color: rgb(223, 226, 223);
+            background-color: rgb(95, 97, 95);
         }
     }
 

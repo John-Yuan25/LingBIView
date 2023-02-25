@@ -234,7 +234,7 @@ const delectCom = () => {
 
 <style scoped lang="less">
 .wrapper {
-    width: 300px;
+    width: 100%;
 
     .styleItem {
         margin: 10px;
@@ -246,7 +246,20 @@ const delectCom = () => {
         }
 
         .inputStyle {
-            flex: 1;
+            width: 60%;
+            padding-left: 3px;
+            color: #ffffff;
+            background-color: #252527;
+            border-radius: 5px;
+            border: 1px solid #252527;
+            outline-style: none ;
+        }
+        .inputStyle:hover{
+            border: 1px solid #69dcb5;
+        }
+        .inputStyle:focus{
+            border: 1px solid #69dcb5;
+            background-color: rgb(61, 59, 59);
         }
     }
 

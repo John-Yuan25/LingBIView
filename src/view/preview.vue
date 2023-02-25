@@ -15,7 +15,7 @@ const route = useRoute()
 const currStore = useCurrStore(route.query.currStoreId)()
 let components: Array<any> = currStore.Allcomponents
 components.forEach(item => {
-        mountedComponent(item)
+    mountedComponent(item)
 })
 
 
@@ -23,18 +23,24 @@ components.forEach(item => {
 
 <style scoped lang="less">
 .container {
-    background-color: #3d3b3b;
+    // background-color: #3d3b3b;
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 .wrapper {
     // border: 2px solid red;
-    position: relative;
+    position: absolute;
+    background-color: #3d3b3b;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.52, 1.52);
     // width: 100%;
     // height: 100%;
-    width: 62.5%;
-    height: calc(100vh - 60px);
-    transform: translate(30%, 3%) scale(1.56, 1.03)
+    // width: 62.5%;
+    // height: calc(100vh - 60px);
+    width: 66vw;
+    height: 66vh;
 }
 </style>

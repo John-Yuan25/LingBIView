@@ -3,7 +3,7 @@
         <div class="backBtn">
             <span @click="backToHome"><i class="iconfont icon-zhuye"></i></span>
         </div>
-        <div class="title">工作区</div>
+        <div class="title"><span> 工作区- {{ itemName }}</span></div>
         <div class="btn">
             <span @click="preview"><i class="iconfont icon-yulan"></i> 预览</span>
             <span @click="publish"><i class="iconfont icon-fabu"></i> 发布</span>
@@ -12,11 +12,12 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { ref } from 'vue';
+
 const router = useRouter()
-const props = defineProps([
-    'storeId'
-])
+const route = useRoute();
+let itemName = ref<string>(route.query.itemName as string)
 
 //返回首页
 const backToHome = function () {
@@ -27,11 +28,11 @@ const preview = function () {
     const url = router.resolve({
         name: 'preview',
         query: {
-            currStoreId: props.storeId
+            currStoreId: route.query.storeId
         }
     });
     // 打开新窗口
-    window.open(url.href,'_blank');
+    window.open(url.href, '_blank');
 }
 
 const publish = function () {
@@ -45,7 +46,6 @@ const publish = function () {
     color: #d5d5d6;
     height: 60px;
     width: 100%;
-    display: flex;
     position: relative;
 
     .backBtn {
@@ -74,13 +74,20 @@ const publish = function () {
 
     .title {
         height: 60px;
-        width: 60px;
+        width: 400px;
         font-size: 14px;
         text-align: center;
         line-height: 60px;
         position: absolute;
         left: 50%;
         transform: translate(-50%, 0);
+        span{
+            width: 80%;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
     }
 
     .btn {
@@ -104,4 +111,5 @@ const publish = function () {
             cursor: pointer;
         }
     }
-}</style>
+}
+</style>

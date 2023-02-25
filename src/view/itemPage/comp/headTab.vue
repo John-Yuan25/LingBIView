@@ -35,7 +35,7 @@ function checkTab(index){
     }
 
     .active {
-        border-bottom: 2px solid #5794f5;
+        border-bottom: 2px solid #69dcb5;
     }
 }
 </style>

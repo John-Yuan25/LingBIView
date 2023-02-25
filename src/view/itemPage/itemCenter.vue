@@ -1,7 +1,7 @@
 <template>
     <div id="canvasBox" class="wrapper" @dragover="dragOver" @drop="drop" @click="checkComp">
         <!-- 设置组件的挂载点 -->
-        <div :id="item.info.id" :currStoreId="props.storeId" v-for="(item, index) in components" :key="index"></div>
+        <div :id="item.info.id" :currStoreId="route.query.storeId" v-for="(item, index) in components" :key="index"></div>
         <div id="borderBox" @mousedown="mouseDownStart" class="borderStyle" v-show="currCompShow"
             :style="(setStyleOfBorder as any)" @contextmenu.prevent="rightClick">
             <div id="borderDot1" @mousedown="changeSizeStart"></div>
@@ -21,14 +21,12 @@ import { getId, mountedComponent, unMountedComponent } from '../../utils/index'
 import getComponent from '../../stores/index';
 import { ref, reactive, computed, toRefs } from 'vue';
 import { useCurrStore, useCategoryBarStore, useCategoryLineStore, usePieStore } from '@/stores';
-
-const props = defineProps([
-    'storeId'
-])
+import { useRoute } from 'vue-router';
+const route = useRoute();
 
 let zIndex: number = 1;
 const emit = defineEmits(['currComp'])
-const currStore = useCurrStore(props.storeId)()
+const currStore = useCurrStore(route.query.storeId)()
 let components: Array<any> = reactive([])
 
 //如果currStore里面有没清空的组件，先渲染出来
@@ -59,7 +57,7 @@ function drop(e) {
     //获取和设置组件信息
     let info = JSON.parse(e.dataTransfer.getData("info"));
     info.id = getId();
-    info.currStoreId=props.storeId;
+    info.currStoreId = route.query.storeId;
     let component = getComponent(info);
     let compWidth = 0;
     let compHeight = 0;
@@ -609,12 +607,13 @@ function rightClick() {
 
 <style scoped lang="less">
 .wrapper {
-    flex: 1;
     background-color: rgb(61, 59, 59);
     position: relative;
-    width: 92%;
-    height: 88vh;
-    top: 2%;
+    width: 66vw;
+    height: 66vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     -moz-user-select: none;
     /*火狐*/
     /*选中文字时避免出现蓝色背景*/
