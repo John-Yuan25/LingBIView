@@ -9,7 +9,8 @@
 // import { computed } from '@vue/reactivity';
 import { onMounted, toRefs, watch } from 'vue'
 import * as echarts from 'echarts';
-import { useScatterStore, useCurrStore } from '@/stores';
+import { useMapStore, useCurrStore } from '@/stores';
+import '../assets/china'
 
 const props = defineProps([
     'id',
@@ -17,9 +18,9 @@ const props = defineProps([
 ])
 let storeId = props.id
 const currStore = useCurrStore(props.currStoreId)()
-const scatterStore = useScatterStore(storeId)()
+const mapStore = useMapStore(storeId)()
 // let styleAttribute: any = toRef(pieStore, 'attribute')
-let { attribute } :any= toRefs(scatterStore)
+let { attribute } :any= toRefs(mapStore)
 
 //zindex属性在父节点
 const parentNode=document.getElementById(storeId) as HTMLElement;
@@ -44,13 +45,13 @@ parentNode.style.zIndex=attribute.value[2].value;
 let myChart
 type EChartsOption = echarts.EChartsOption;
 let option: EChartsOption;
-option = scatterStore.option as EChartsOption
+option = mapStore.option as EChartsOption
 onMounted(() => {
     let chartDom = document.getElementById(storeId)!;
     chartDom.addEventListener('click', function () {
         currStore.$patch({
             currStoreId: storeId,
-            type: 'scatterComp'
+            type: 'mapComp'
         })
     })
     myChart = echarts.init(chartDom);
@@ -65,15 +66,15 @@ watch(
             height: attribute.value[1].value
         })
         //更新图表数据
-        option = scatterStore.option as EChartsOption
+        option = mapStore.option as EChartsOption
         option && myChart.setOption(option);
     }
 )
 
 //监听图表的数据变化
-watch(() => scatterStore.option.series[0].data, (newValue, oldValue) => {
+watch(() => mapStore.option, (newValue, oldValue) => {
     //更新图表数据
-    option = scatterStore.option as EChartsOption
+    option = mapStore.option as EChartsOption
     option && myChart.setOption(option);
 }
 )

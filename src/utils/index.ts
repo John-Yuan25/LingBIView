@@ -7,6 +7,8 @@ import divComp from '../components/divComp.vue'
 import imgComp from '../components/imgComp.vue'
 import pieComp from '../components/pieComp.vue'
 import scatterComp from '../components/scatterComp.vue'
+import mapComp from '../components/mapComp.vue'
+
 //获取样式
 let getAttrStr = (attrs) => {
   let attrStr = "";
@@ -69,23 +71,26 @@ export const mountedComponent = (component) => {
     if(component.info.type=='textComp'){
       thisComp=textComp;
     }
-    if(component.info.type=='categoryBarComp'){
+    else if(component.info.type=='categoryBarComp'){
       thisComp=categoryBarComp;
     }
-    if(component.info.type=='categoryLineComp'){
+    else if(component.info.type=='categoryLineComp'){
       thisComp=categoryLineComp;
     }
-    if(component.info.type=='divComp'){
+    else if(component.info.type=='divComp'){
       thisComp=divComp;
     }
-    if(component.info.type=='imgComp'){
+    else if(component.info.type=='imgComp'){
       thisComp=imgComp;
     }
-    if(component.info.type=='pieComp'){
+    else if(component.info.type=='pieComp'){
       thisComp=pieComp;
     }
-    if(component.info.type=='scatterComp'){
+    else if(component.info.type=='scatterComp'){
       thisComp=scatterComp;
+    }
+    else if(component.info.type=='mapComp'){
+      thisComp=mapComp;
     }
     componentApp = createApp(thisComp, {
       name: id.toString(),

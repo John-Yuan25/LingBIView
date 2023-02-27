@@ -8,6 +8,8 @@ export * from './categoryBarStore'
 export * from './pieStore'
 export * from './divStore'
 export * from './scatterStore'
+export * from './mapStore'
+
 
 import text from './text';
 import img from './imgStore'
@@ -16,6 +18,7 @@ import categoryBarStore from './categoryBarStore';
 import pieStore from './pieStore';
 import divStore from './divStore';
 import scatterStore from './scatterStore';
+import mapStore from './mapStore';
 
 
 
@@ -27,6 +30,7 @@ let obj={
   pieComp:pieStore,
   divComp:divStore,
   scatterComp:scatterStore,
+  mapComp:mapStore
 }
 
 let getComponent=(info:any)=>{

@@ -410,6 +410,56 @@ async function mouseUp(e) {
             ]
         })
     }
+    if (currStore.type === 'scatterComp') {
+        thisStore = usePieStore(currStore.currStoreId)()
+        thisStore.$patch({
+            attribute: [
+                {
+                    name: "宽度",
+                    type: 'number',
+                    key: 'width',
+                    value: parseFloat(borderComp.style.width),
+                    placeholder: '请输入宽度'
+                }, {
+                    name: '高度',
+                    type: 'number',
+                    key: 'height',
+                    value: parseFloat(borderComp.style.height),
+                    placeholder: '请输入高度'
+                }, {
+                    name: '层级',
+                    type: 'number',
+                    key: 'z-index',
+                    value: comp.style.zIndex,
+                }
+            ]
+        })
+    }
+    if (currStore.type === 'mapComp') {
+        thisStore = usePieStore(currStore.currStoreId)()
+        thisStore.$patch({
+            attribute: [
+                {
+                    name: "宽度",
+                    type: 'number',
+                    key: 'width',
+                    value: parseFloat(borderComp.style.width),
+                    placeholder: '请输入宽度'
+                }, {
+                    name: '高度',
+                    type: 'number',
+                    key: 'height',
+                    value: parseFloat(borderComp.style.height),
+                    placeholder: '请输入高度'
+                }, {
+                    name: '层级',
+                    type: 'number',
+                    key: 'z-index',
+                    value: comp.style.zIndex,
+                }
+            ]
+        })
+    }
     //判定是否点击的是缩放点
     switch (changeSizeState) {
         case 1: {

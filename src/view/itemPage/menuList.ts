@@ -26,6 +26,10 @@ const ChartsMenus=[{
     type:'scatterComp',
     name:'散点图'
 },
+{
+    type:'mapComp',
+    name:'地图'
+},
 ]
 
 export {

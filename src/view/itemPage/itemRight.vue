@@ -17,6 +17,8 @@
             </pieRight>
             <scatterRight v-if="scatterRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
             </scatterRight>
+            <mapRight v-if="mapRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
+            </mapRight>
         </div>
         <!-- 没选中组件的情况 -->
         <div v-if="showDefault" style="padding:15px">当前没有正在编辑的组件</div>
@@ -32,6 +34,7 @@ import categoryBarRight from './comp/categoryBarRight.vue';
 import pieRight from './comp/pieRight.vue';
 import divRight from './comp/divRight.vue';
 import scatterRight from './comp/scatterRight.vue';
+import mapRight from './comp/mapRight.vue';
 import { ref, watch } from 'vue';
 import { useRoute} from 'vue-router'
 const route=useRoute();
@@ -44,6 +47,7 @@ let checkIndex = ref<number>(0)
 function checkTabChange(index) {
     checkIndex.value = index
 }
+
 let showDefault = ref<boolean>(true)
 let textRightShow = ref<boolean>(false)
 let imgRightShow = ref<boolean>(false)
@@ -52,6 +56,7 @@ let categoryBarRightShow = ref<boolean>(false)
 let pieRightShow = ref<boolean>(false)
 let divRightShow = ref<boolean>(false)
 let scatterRightShow = ref<boolean>(false)
+let mapRightShow = ref<boolean>(false)
 
 watch(
     () => props.mycurrComp,
@@ -66,6 +71,7 @@ watch(
         pieRightShow.value = false
         divRightShow.value = false
         scatterRightShow.value = false
+        mapRightShow.value = false
         showDefault.value = true
         //选中哪个子组件异步显示哪个
         if (newValue) {
@@ -98,6 +104,10 @@ watch(
                     showDefault.value = false
                     scatterRightShow.value = true
                 }
+                if (props.mycurrComp.info.type === 'mapComp') {
+                    showDefault.value = false
+                    mapRightShow.value = true
+                }
             }, 0)
         }
     }, { immediate: true })
@@ -112,6 +122,7 @@ const lostComp = (data: boolean) => {
         pieRightShow.value = false
         divRightShow.value = false
         scatterRightShow.value = false
+        mapRightShow.value = false
         showDefault.value = true
     }
 }
