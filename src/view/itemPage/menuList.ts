@@ -12,6 +12,10 @@ const BasicMenus=[{
     type:'divComp',
     name:'盒子组件'
 },
+{
+    type:'videoComp',
+    name:'视频组件'
+},
 ]
 const ChartsMenus=[{
     type:'categoryLineComp',

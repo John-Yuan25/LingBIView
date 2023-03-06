@@ -8,6 +8,7 @@ import imgComp from '../components/imgComp.vue'
 import pieComp from '../components/pieComp.vue'
 import scatterComp from '../components/scatterComp.vue'
 import mapComp from '../components/mapComp.vue'
+import videoComp from '../components/videoComp.vue'
 
 //获取样式
 let getAttrStr = (attrs) => {
@@ -91,6 +92,9 @@ export const mountedComponent = (component) => {
     }
     else if(component.info.type=='mapComp'){
       thisComp=mapComp;
+    }
+    else if(component.info.type=='videoComp'){
+      thisComp=videoComp;
     }
     componentApp = createApp(thisComp, {
       name: id.toString(),

@@ -20,7 +20,7 @@
 import { getId, mountedComponent, unMountedComponent } from '../../utils/index'
 import getComponent from '../../stores/index';
 import { ref, reactive, computed, toRefs } from 'vue';
-import { useCurrStore, useCategoryBarStore, useCategoryLineStore, usePieStore } from '@/stores';
+import { useCurrStore, useCategoryBarStore, useCategoryLineStore, usePieStore,useVideoStore } from '@/stores';
 import { useRoute } from 'vue-router';
 const route = useRoute();
 
@@ -437,6 +437,31 @@ async function mouseUp(e) {
     }
     if (currStore.type === 'mapComp') {
         thisStore = usePieStore(currStore.currStoreId)()
+        thisStore.$patch({
+            attribute: [
+                {
+                    name: "宽度",
+                    type: 'number',
+                    key: 'width',
+                    value: parseFloat(borderComp.style.width),
+                    placeholder: '请输入宽度'
+                }, {
+                    name: '高度',
+                    type: 'number',
+                    key: 'height',
+                    value: parseFloat(borderComp.style.height),
+                    placeholder: '请输入高度'
+                }, {
+                    name: '层级',
+                    type: 'number',
+                    key: 'z-index',
+                    value: comp.style.zIndex,
+                }
+            ]
+        })
+    }
+    if (currStore.type === 'videoComp') {
+        thisStore = useVideoStore(currStore.currStoreId)()
         thisStore.$patch({
             attribute: [
                 {

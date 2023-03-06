@@ -7,6 +7,8 @@
             </textRight>
             <imgRight v-if="imgRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="route.query.storeId" @lostComp="lostComp">
             </imgRight>
+            <videoRight v-if="videoRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="route.query.storeId" @lostComp="lostComp">
+            </videoRight>
             <divRight v-if="divRightShow" :thiscurrComp="thiscurrComp" :checkIndex="checkIndex" :storeId="route.query.storeId" @lostComp="lostComp">
             </divRight>
             <categoryLineRight v-if="categoryLineRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex"
@@ -35,6 +37,7 @@ import pieRight from './comp/pieRight.vue';
 import divRight from './comp/divRight.vue';
 import scatterRight from './comp/scatterRight.vue';
 import mapRight from './comp/mapRight.vue';
+import videoRight from './comp/videoRight.vue';
 import { ref, watch } from 'vue';
 import { useRoute} from 'vue-router'
 const route=useRoute();
@@ -57,6 +60,7 @@ let pieRightShow = ref<boolean>(false)
 let divRightShow = ref<boolean>(false)
 let scatterRightShow = ref<boolean>(false)
 let mapRightShow = ref<boolean>(false)
+let videoRightShow = ref<boolean>(false)
 
 watch(
     () => props.mycurrComp,
@@ -72,6 +76,7 @@ watch(
         divRightShow.value = false
         scatterRightShow.value = false
         mapRightShow.value = false
+        videoRightShow.value = false
         showDefault.value = true
         //选中哪个子组件异步显示哪个
         if (newValue) {
@@ -108,6 +113,10 @@ watch(
                     showDefault.value = false
                     mapRightShow.value = true
                 }
+                if (props.mycurrComp.info.type === 'videoComp') {
+                    showDefault.value = false
+                    videoRightShow.value = true
+                }
             }, 0)
         }
     }, { immediate: true })
@@ -123,6 +132,7 @@ const lostComp = (data: boolean) => {
         divRightShow.value = false
         scatterRightShow.value = false
         mapRightShow.value = false
+        videoRightShow.value = false
         showDefault.value = true
     }
 }
