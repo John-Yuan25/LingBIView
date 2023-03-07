@@ -24,12 +24,22 @@ const parentNode=document.getElementById(storeId) as HTMLElement;
 parentNode.style.zIndex=styleAttribute.value[2].value; 
 
 let setStyle = computed(() => {
+    let borderStyle=''
+
+    if(styleAttribute.value[6].value=='实线') borderStyle='solid'
+    else if(styleAttribute.value[6].value=='虚线') borderStyle='dashed'
+    else if(styleAttribute.value[6].value=='双线') borderStyle='double'
+    else if(styleAttribute.value[6].value=='点状') borderStyle='dotted'
+
     return {
         [styleAttribute.value[0].key]: styleAttribute.value[0].value + 'px',
         [styleAttribute.value[1].key]: styleAttribute.value[1].value + 'px',
         [styleAttribute.value[2].key]: styleAttribute.value[2].value,
         [styleAttribute.value[3].key]: styleAttribute.value[3].value,
-
+        [styleAttribute.value[4].key]: styleAttribute.value[4].value + 'px',
+        [styleAttribute.value[5].key]: styleAttribute.value[5].value,
+        [styleAttribute.value[6].key]: borderStyle,
+        [styleAttribute.value[7].key]: styleAttribute.value[7].value + 'px',
     }
 })
 function changeStoreId() {

@@ -8,6 +8,8 @@
                     @change="updateComp">
                 <input class="inputStyle" v-if="item.type === 'color'" type="color" v-model="item.value"
                     @change="updateComp">
+                <select-option v-if="item.type==='select'" :selectOption="item.selections" :currSelect="item.value" @selectData="divStore.setSelect">
+                </select-option>
             </div>
         </div>
         <!-- 数据 -->
@@ -22,6 +24,7 @@
 import { useDivStore, useCurrStore } from '@/stores'
 import { toRef } from 'vue';
 import { unMountedComponent } from '../../../utils/index'
+import selectOption from './selectOption.vue';
 
 const props = defineProps([
     'thiscurrComp',
@@ -62,7 +65,28 @@ function updateComp(e) {
                 type: 'color',
                 key: 'background-color',
                 value: props.thiscurrComp.attribute[3].value,
-            }
+            },{
+                name:"边框宽度",
+                type:'number',
+                key:'borderWidth',
+                value:props.thiscurrComp.attribute[4].value,
+            },{
+                name:"边框颜色",
+                type:'color',
+                key:'borderColor',
+                value:props.thiscurrComp.attribute[5].value,
+            },{
+                name:"边框样式",
+                type:'select',
+                key:'borderStyle',
+                value:props.thiscurrComp.attribute[6].value,
+                selections:['实线','虚线','双线','点状'],
+            },{
+                name:"圆角",
+                type:'number',
+                key:'borderRadius',
+                value:props.thiscurrComp.attribute[7].value,
+            },
 
         ]
     })
