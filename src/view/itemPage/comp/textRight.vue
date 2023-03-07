@@ -8,6 +8,8 @@
                     @change="updateComp">
                 <input class="inputStyle" v-if="item.type === 'color'" type="color" v-model="item.value"
                     @change="updateComp">
+                <select-option v-if="item.type==='select'" :selectOption="item.selections" :currSelect="item.value" @selectData="textStore.setSelect">
+                </select-option>
             </div>
         </div>
         <!-- 数据 -->
@@ -20,9 +22,9 @@
 
 <script setup lang="ts">
 import { useTextStore, useCurrStore } from '@/stores'
-import { toRef } from 'vue';
+import { toRef,ref } from 'vue';
 import { unMountedComponent } from '../../../utils/index'
-
+import selectOption from './selectOption.vue';
 const props = defineProps([
     'thiscurrComp',
     'checkIndex',
@@ -60,17 +62,59 @@ function updateComp(e) {
                 key: 'fontSize',
                 value: props.thiscurrComp.attribute[2].value,
             }, {
-                name: '字体颜色',
-                type: 'color',
-                key: 'color',
+                name:"水平对齐",
+                type:'select',
+                key:'textAlign',
                 value: props.thiscurrComp.attribute[3].value,
+                selections:['居中','左对齐','右对齐'],
             },{
                 name: '层级',
                 type: 'number',
                 key: 'z-index',
                 value: props.thiscurrComp.attribute[4].value,
+            },{
+                name:"行高",
+                type:'number',
+                key:'line-height',
+                value: props.thiscurrComp.attribute[5].value,
+            },{
+                name:"字体粗细",
+                type:'select',
+                key:'fontWeight',
+                value: props.thiscurrComp.attribute[6].value,
+                selections:['常规','粗','细'],
+            },{
+                name: '字体颜色',
+                type: 'color',
+                key: 'color',
+                value: props.thiscurrComp.attribute[7].value,
+            },{
+                name:"边框宽度",
+                type:'number',
+                key:'borderWidth',
+                value:props.thiscurrComp.attribute[8].value,
+            },{
+                name:"边框颜色",
+                type:'color',
+                key:'borderColor',
+                value:props.thiscurrComp.attribute[9].value,
+            },{
+                name:"边框样式",
+                type:'select',
+                key:'borderStyle',
+                value:props.thiscurrComp.attribute[10].value,
+                selections:['实线','虚线','双线','点状'],
+            },{
+                name:"圆角",
+                type:'number',
+                key:'borderRadius',
+                value:props.thiscurrComp.attribute[11].value,
+            },{
+                name:"背景颜色",
+                type:'color',
+                key:'background-color',
+                value:props.thiscurrComp.attribute[12].value,
             }
-
         ]
     })
     parentNode.style.zIndex=props.thiscurrComp.attribute[4].value
@@ -91,11 +135,9 @@ const delectCom = () => {
 <style scoped lang="less">
 .wrapper {
     width: 100%;
-
     .styleItem {
         margin: 10px;
         display: flex;
-
         .label {
             display: inline-block;
             width: 80px;
