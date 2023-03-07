@@ -48,6 +48,7 @@ function check(item) {
 .checkBox {
     position: absolute;
     width: 50%;
+    z-index: 999;
     span {
         display: inline-block;
         width: 100%;
