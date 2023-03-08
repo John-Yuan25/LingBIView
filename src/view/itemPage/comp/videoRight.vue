@@ -6,6 +6,8 @@
                 <span class="label">{{ item.name }}:</span>
                 <input class="inputStyle" v-if="item.type === 'number'" type="number" v-model="item.value"
                     @change="updateComp">
+                <select-option v-if="item.type==='select'" :selectOption="item.selections" :currSelect="item.value" @selectData="videoStore.setSelect">
+                </select-option>
             </div>
         </div>
         <!-- 数据 -->
@@ -20,6 +22,7 @@
 import { useVideoStore, useCurrStore } from '@/stores'
 import { ref, toRef } from 'vue';
 import { unMountedComponent } from '../../../utils/index'
+import selectOption from './selectOption.vue';
 
 const props = defineProps([
     'thiscurrComp',
@@ -58,7 +61,14 @@ function updateComp(e) {
                 type: 'number',
                 key: 'zIndex',
                 value: props.thiscurrComp.attribute[2].value,
-            }
+            },
+            {
+                name:"样式",
+                type:'select',
+                key:'object-fit',
+                value:props.thiscurrComp.attribute[3].value,
+                selections:['fill','contain','cover','none','scale-down'],
+            },
         ]
     })
     parentNode.style.zIndex = props.thiscurrComp.attribute[2].value
@@ -83,7 +93,8 @@ const delectCom = () => {
 
     .styleItem {
         margin: 10px;
-        width: 100%;
+        display: flex;
+        position: relative;
         .label {
             display: inline-block;
             width: 80px;

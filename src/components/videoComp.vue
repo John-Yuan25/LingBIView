@@ -1,6 +1,6 @@
 <template>
     <div @click="changeStoreId" class="videoBox">
-        <video :src="(videoUrl as string)" preload="auto" loop autoplay :style="(setStyle as any)" class="wrapper"></video>
+        <video :src="(videoUrl as string)" preload="auto" loop autoplay :style="(setStyle as any)" controls  class="wrapper"></video>
     </div>
 </template>
 
@@ -27,7 +27,7 @@ let setStyle = computed(() => {
         [styleAttribute.value[0].key]: styleAttribute.value[0].value + 'px',
         [styleAttribute.value[1].key]: styleAttribute.value[1].value + 'px',
         [styleAttribute.value[2].key]: styleAttribute.value[2].value,
-
+        [styleAttribute.value[3].key]: styleAttribute.value[3].value,
     }
 })
 let videoUrl = computed(() => {
@@ -42,7 +42,7 @@ function changeStoreId() {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .videoBox{
     position: relative;
 }

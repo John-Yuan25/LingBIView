@@ -23,12 +23,23 @@ export const useVideoStore = function (this: any, id: any) {
           key: "zIndex",
           value: 1,
         },
+        {
+          name: "样式",
+          type: 'select',
+          key: 'object-fit',
+          value: 'contain',
+          selections: ['fill', 'contain', 'cover', 'none', 'scale-down'],
+        },
       ],
       tag: videoComp,
       videoUrl: "https://vue.mtruning.club/static/mp4/earth-1d58aa0e.mp4",
     }),
     getters: {},
-    actions: {},
+    actions: {
+      setSelect(data) {
+        this.attribute[3].value = data;
+      }
+    },
     // persist: true,
     persist: {
       key: id,

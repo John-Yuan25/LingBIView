@@ -27,7 +27,7 @@ let setStyle = computed(() => {
         [styleAttribute.value[0].key]: styleAttribute.value[0].value + 'px',
         [styleAttribute.value[1].key]: styleAttribute.value[1].value + 'px',
         [styleAttribute.value[2].key]: styleAttribute.value[2].value,
-
+        [styleAttribute.value[3].key]: styleAttribute.value[3].value,
     }
 })
 let picUrl = computed(() => {
