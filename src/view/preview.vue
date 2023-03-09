@@ -14,8 +14,22 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const currStore = useCurrStore(route.query.currStoreId)()
 let components: Array<any> = currStore.Allcomponents
-components.forEach(item => {
-    mountedComponent(item)
+components.forEach((item, index) => {
+    mountedComponent(item);
+    return new Promise((resolve, reject) => {
+        resolve('success')
+    }).then(value => {
+        if (!item.info.deleted) {
+            let thisItem = document.getElementById(item.info.id) as Element;
+            thisItem.addEventListener('click', () => {  
+                try {
+                    eval(item.code)  
+                } catch (e) {
+                    console.warn('点击事件代码有误：'+e);  
+                }      
+            })
+        }
+    })
 })
 
 

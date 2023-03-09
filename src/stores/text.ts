@@ -78,6 +78,8 @@ export const useTextStore =function(this:any,id:any){
             ],
             tag:textComp,
             data:'默认文本',
+            code:'//code here'
+
         }),
         getters: {
     

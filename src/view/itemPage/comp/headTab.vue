@@ -13,7 +13,7 @@ const props=defineProps([
 ])
 const emit=defineEmits(['checkTabChange'])
  
-let tabList = ['样式', '数据']
+let tabList = ['样式', '数据','事件']
 let checkTabIndex = ref<number>(props.checkIndex)
 
 function checkTab(index){

@@ -51,7 +51,7 @@ export const useDivStore =function(this:any,id:any){
                 },
             ],
             tag:divComp,
-            
+            code:'//code here'
         }),
         getters: {
     

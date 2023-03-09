@@ -85,6 +85,7 @@ function drop(e) {
 
 let currComp = ref<any>(null)
 let { currCompShow } = toRefs(currStore)
+currCompShow.value = false;
 //点击选中组件
 function checkComp(e) {
     // 循环找到我们点击的组件，这里使用的正则匹配

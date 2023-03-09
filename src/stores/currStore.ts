@@ -7,6 +7,8 @@ export const useCurrStore = function (this: any, id: any) {
       type: "",
       currCompShow: false,
       Allcomponents: <any>[],
+      editorShow:false,
+      editorCode:'',
     }),
     getters: {},
     actions: {

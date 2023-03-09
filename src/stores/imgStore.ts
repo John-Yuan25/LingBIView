@@ -33,6 +33,7 @@ export const useImgStore = function (this: any, id: any) {
       ],
       tag: imgComp,
       imgUrl: "https://v2.cn.vuejs.org/images/logo.svg",
+      code:'//code here'
     }),
     getters: {},
     actions: {

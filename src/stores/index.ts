@@ -33,7 +33,7 @@ let obj={
   divComp:divStore,
   scatterComp:scatterStore,
   mapComp:mapStore,
-  videoComp:videoStore
+  videoComp:videoStore,
 }
 
 let getComponent=(info:any)=>{

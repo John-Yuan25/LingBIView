@@ -6,13 +6,18 @@
                 <span class="label">{{ item.name }}:</span>
                 <input class="inputStyle" v-if="item.type === 'number'" type="number" v-model="item.value"
                     @change="updateComp">
-                <select-option v-if="item.type==='select'" :selectOption="item.selections" :currSelect="item.value" @selectData="videoStore.setSelect">
+                <select-option v-if="item.type === 'select'" :selectOption="item.selections" :currSelect="item.value"
+                    @selectData="videoStore.setSelect">
                 </select-option>
             </div>
         </div>
         <!-- 数据 -->
         <div v-if="props.checkIndex === 1" class="dataBox">
             <textarea class="dataText" v-model="videoUlrStr" @change="updateComp"></textarea>
+        </div>
+        <!-- 事件 -->
+        <div v-show="props.checkIndex === 2">
+            暂无事件
         </div>
     </div>
     <button class="delectBtn" @click="delectCom"><i class="iconfont icon-shanchu"></i>删除组件</button>
@@ -63,11 +68,11 @@ function updateComp(e) {
                 value: props.thiscurrComp.attribute[2].value,
             },
             {
-                name:"样式",
-                type:'select',
-                key:'object-fit',
-                value:props.thiscurrComp.attribute[3].value,
-                selections:['fill','contain','cover','none','scale-down'],
+                name: "样式",
+                type: 'select',
+                key: 'object-fit',
+                value: props.thiscurrComp.attribute[3].value,
+                selections: ['fill', 'contain', 'cover', 'none', 'scale-down'],
             },
         ]
     })
@@ -95,6 +100,7 @@ const delectCom = () => {
         margin: 10px;
         display: flex;
         position: relative;
+
         .label {
             display: inline-block;
             width: 80px;
@@ -120,13 +126,14 @@ const delectCom = () => {
         }
     }
 
-    .dataBox{
+    .dataBox {
         display: flex;
         min-height: 200px;
         margin-left: 1vw;
         margin-top: 10px;
         width: 13vw;
     }
+
     .dataText {
         min-height: 200px;
         flex: 1;

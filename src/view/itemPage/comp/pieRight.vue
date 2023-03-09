@@ -50,6 +50,10 @@
                 <span @click="downloadData"><i class="iconfont icon-xiazai"></i> 下载</span>
             </div>
         </div>
+        <!-- 事件 -->
+        <div v-show="props.checkIndex === 2">
+            暂无事件
+        </div>
         <button class="delectBtn" @click="delectCom"><i class="iconfont icon-shanchu"></i>删除组件</button>
     </div>
 </template>
@@ -69,11 +73,11 @@ const props = defineProps([
 const emit = defineEmits([
     'lostComp',
 ])
-const currStore =useCurrStore(props.storeId)()
+const currStore = useCurrStore(props.storeId)()
 let pieStore = usePieStore(currStore.currStoreId)()
 let optionStr = ref(pieStore.option.dataset)
 //zindex属性在父组件上
-const parentNode=document.getElementById(currStore.currStoreId) as HTMLElement;
+const parentNode = document.getElementById(currStore.currStoreId) as HTMLElement;
 
 //监听图表的数据变化,更新optionStr
 watch(() => pieStore.option.dataset, (newValue, oldValue) => {
@@ -98,7 +102,7 @@ function updateComp(e) {
                 key: 'height',
                 value: props.thiscurrComp.attribute[1].value,
                 placeholder: '请输入高度'
-            },{
+            }, {
                 name: '层级',
                 type: 'number',
                 key: 'z-index',
@@ -106,7 +110,7 @@ function updateComp(e) {
             }
         ]
     })
-    parentNode.style.zIndex=props.thiscurrComp.attribute[2].value
+    parentNode.style.zIndex = props.thiscurrComp.attribute[2].value
 }
 
 //传入json数据
@@ -223,7 +227,7 @@ const delectCom = () => {
         emit('lostComp', true)
         currStore.currCompShow = false
         //卸载组件
-        unMountedComponent(props.thiscurrComp,props.storeId)
+        unMountedComponent(props.thiscurrComp, props.storeId)
         //删除本地存储的当前组件数据
         localStorage.removeItem(currStore.currStoreId)
     }
@@ -252,12 +256,14 @@ const delectCom = () => {
             background-color: #252527;
             border-radius: 5px;
             border: 1px solid #252527;
-            outline-style: none ;
+            outline-style: none;
         }
-        .inputStyle:hover{
+
+        .inputStyle:hover {
             border: 1px solid #69dcb5;
         }
-        .inputStyle:focus{
+
+        .inputStyle:focus {
             border: 1px solid #69dcb5;
             background-color: rgb(61, 59, 59);
         }
