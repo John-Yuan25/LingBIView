@@ -3,7 +3,7 @@
         <div class="editorBox">
             <div id="monacoEditor"></div>
         </div>
-        <div class="attention">该点击元素名为thisItem,语法同js</div>
+        <div class="attention">点击元素名为thisItem,语法同js</div>
         <div class="cancelBtn" @click="cancel">取消</div>
         <div class="saveBtn" @click="save">保存</div>
     </div>

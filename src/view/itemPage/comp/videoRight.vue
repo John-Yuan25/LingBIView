@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <!-- 样式 -->
-        <div v-if="props.checkIndex === 0">
+        <div v-show="props.checkIndex === 0">
             <div class="styleItem" v-for="(item, index) in thiscurrComp.attribute" :key="index">
                 <span class="label">{{ item.name }}:</span>
                 <input class="inputStyle" v-if="item.type === 'number'" type="number" v-model="item.value"
@@ -12,7 +12,7 @@
             </div>
         </div>
         <!-- 数据 -->
-        <div v-if="props.checkIndex === 1" class="dataBox">
+        <div v-show="props.checkIndex === 1" class="dataBox">
             <textarea class="dataText" v-model="videoUlrStr" @change="updateComp"></textarea>
         </div>
         <!-- 事件 -->
