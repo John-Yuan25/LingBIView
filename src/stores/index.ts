@@ -10,6 +10,7 @@ export * from './divStore'
 export * from './scatterStore'
 export * from './mapStore'
 export * from './videoStore'
+export * from './numberStore'
 
 
 import text from './text';
@@ -21,6 +22,7 @@ import divStore from './divStore';
 import scatterStore from './scatterStore';
 import mapStore from './mapStore';
 import videoStore from './videoStore';
+import numberStore from './numberStore';
 
 
 
@@ -34,6 +36,7 @@ let obj={
   scatterComp:scatterStore,
   mapComp:mapStore,
   videoComp:videoStore,
+  numberComp:numberStore,
 }
 
 let getComponent=(info:any)=>{

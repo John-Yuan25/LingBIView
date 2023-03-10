@@ -21,6 +21,8 @@
             </scatterRight>
             <mapRight v-if="mapRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
             </mapRight>
+            <numberRight v-if="numberRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
+            </numberRight>
         </div>
         <!-- 没选中组件的情况 -->
         <div v-if="showDefault" style="padding:15px">当前没有正在编辑的组件</div>
@@ -38,6 +40,7 @@ import divRight from './comp/divRight.vue';
 import scatterRight from './comp/scatterRight.vue';
 import mapRight from './comp/mapRight.vue';
 import videoRight from './comp/videoRight.vue';
+import numberRight from './comp/numberRight.vue';
 import { ref, watch } from 'vue';
 import { useRoute} from 'vue-router'
 const route=useRoute();
@@ -61,6 +64,7 @@ let divRightShow = ref<boolean>(false)
 let scatterRightShow = ref<boolean>(false)
 let mapRightShow = ref<boolean>(false)
 let videoRightShow = ref<boolean>(false)
+let numberRightShow = ref<boolean>(false)
 
 watch(
     () => props.mycurrComp,
@@ -77,6 +81,7 @@ watch(
         scatterRightShow.value = false
         mapRightShow.value = false
         videoRightShow.value = false
+        numberRightShow.value = false
         showDefault.value = true
         //选中哪个子组件异步显示哪个
         if (newValue) {
@@ -117,6 +122,10 @@ watch(
                     showDefault.value = false
                     videoRightShow.value = true
                 }
+                if (props.mycurrComp.info.type === 'numberComp') {
+                    showDefault.value = false
+                    numberRightShow.value = true
+                }
             }, 0)
         }
     }, { immediate: true })
@@ -133,6 +142,7 @@ const lostComp = (data: boolean) => {
         scatterRightShow.value = false
         mapRightShow.value = false
         videoRightShow.value = false
+        numberRightShow.value = false
         showDefault.value = true
     }
 }
