@@ -683,7 +683,7 @@ export const useMapStore = function (this: any, id: any) {
     getters: {},
     actions: {
       importOption(data) {
-        this.option.series[0].data = data;
+        this.option = data;
       },
     },
     // persist: true,

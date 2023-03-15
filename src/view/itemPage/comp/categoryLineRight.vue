@@ -75,12 +75,12 @@ const emit = defineEmits([
 ])
 const currStore = useCurrStore(props.storeId)()
 let categoryLineStore = useCategoryLineStore(currStore.currStoreId)()
-let optionStr = ref(categoryLineStore.option.dataset)
+let optionStr = ref(categoryLineStore.option)
 //zindex属性在父组件上
 const parentNode=document.getElementById(currStore.currStoreId) as HTMLElement;
 
 //监听图表的数据变化,更新optionStr
-watch(() => categoryLineStore.option.dataset, (newValue, oldValue) => {
+watch(() => categoryLineStore.option, (newValue, oldValue) => {
     optionStr.value = newValue
 }
 )
@@ -128,7 +128,7 @@ function importData(e) {
 //下载当前图表的json数据
 function downloadData() {
     categoryLineStore = useCategoryLineStore(currStore.currStoreId)()
-    let dataStr = JSON.stringify(categoryLineStore.option.dataset)
+    let dataStr = JSON.stringify(categoryLineStore.option)
     //调用导出json数据方法
     console.log(currStore.currStoreId);
     
@@ -284,6 +284,8 @@ const delectCom = () => {
         padding: 10px;
         margin: 10px;
         margin-top: 20px;
+        max-height: 40vh;
+        overflow: hidden;
     }
 
     .btn {

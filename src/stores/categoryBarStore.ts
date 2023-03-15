@@ -54,7 +54,7 @@ export const useCategoryBarStore = function (this: any, id: any) {
     getters: {},
     actions: {
       importOption(data) {
-        this.option.dataset = data;
+        this.option = data;
       },
     },
     // persist: true,

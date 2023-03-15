@@ -283,6 +283,8 @@ const delectCom = () => {
         padding: 10px;
         margin: 10px;
         margin-top: 20px;
+        max-height: 40vh;
+        overflow: hidden;
     }
 
     .btn {
