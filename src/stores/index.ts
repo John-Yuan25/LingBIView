@@ -11,6 +11,10 @@ export * from './scatterStore'
 export * from './mapStore'
 export * from './videoStore'
 export * from './numberStore'
+export * from './kLineStore'
+export * from './radarStore'
+export * from './funnelStore'
+export * from './gaugeStore'
 
 
 import text from './text';
@@ -23,6 +27,10 @@ import scatterStore from './scatterStore';
 import mapStore from './mapStore';
 import videoStore from './videoStore';
 import numberStore from './numberStore';
+import kLineStore from './kLineStore';
+import radarStore from './radarStore';
+import funnelStore from './funnelStore';
+import gaugeStore from './gaugeStore';
 
 
 
@@ -37,6 +45,10 @@ let obj={
   mapComp:mapStore,
   videoComp:videoStore,
   numberComp:numberStore,
+  kLineComp:kLineStore,
+  radarComp:radarStore,
+  funnelComp:funnelStore,
+  gaugeComp:gaugeStore,
 }
 
 let getComponent=(info:any)=>{

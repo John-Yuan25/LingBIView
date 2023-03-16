@@ -8,6 +8,10 @@ import scatterComp from './scatterComp.vue'
 import mapComp from './mapComp.vue'
 import videoComp from './videoComp.vue'
 import numberComp from './numberComp.vue'
+import kLineComp from './kLineComp.vue'
+import radarComp from './radarComp.vue'
+import funnelComp from './funnelComp.vue'
+import gaugeComp from './gaugeComp.vue'
 
 //定义组件对象
 let obj={
@@ -20,7 +24,11 @@ let obj={
     scatterComp,
     mapComp,
     videoComp,
-    numberComp
+    numberComp,
+    kLineComp,
+    radarComp,
+    funnelComp,
+    gaugeComp
 }
 //组件注册方法
 function install(App){

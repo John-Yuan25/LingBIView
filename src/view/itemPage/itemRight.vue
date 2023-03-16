@@ -23,6 +23,14 @@
             </mapRight>
             <numberRight v-if="numberRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
             </numberRight>
+            <kLineRight v-if="kLineRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
+            </kLineRight>
+            <radarRight v-if="radarRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
+            </radarRight>
+            <funnelRight v-if="funnelRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
+            </funnelRight>
+            <gaugeRight v-if="gaugeRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
+            </gaugeRight>
         </div>
         <!-- 没选中组件的情况 -->
         <div v-if="showDefault" style="padding:15px">当前没有正在编辑的组件</div>
@@ -41,6 +49,11 @@ import scatterRight from './comp/scatterRight.vue';
 import mapRight from './comp/mapRight.vue';
 import videoRight from './comp/videoRight.vue';
 import numberRight from './comp/numberRight.vue';
+import kLineRight from './comp/kLineRight.vue';
+import radarRight from './comp/radarRight.vue';
+import funnelRight from './comp/radarRight.vue';
+import gaugeRight from './comp/gaugeRight.vue';
+
 import { ref, watch } from 'vue';
 import { useRoute} from 'vue-router'
 const route=useRoute();
@@ -65,6 +78,10 @@ let scatterRightShow = ref<boolean>(false)
 let mapRightShow = ref<boolean>(false)
 let videoRightShow = ref<boolean>(false)
 let numberRightShow = ref<boolean>(false)
+let kLineRightShow = ref<boolean>(false)
+let radarRightShow = ref<boolean>(false)
+let funnelRightShow = ref<boolean>(false)
+let gaugeRightShow = ref<boolean>(false)
 
 watch(
     () => props.mycurrComp,
@@ -82,6 +99,10 @@ watch(
         mapRightShow.value = false
         videoRightShow.value = false
         numberRightShow.value = false
+        kLineRightShow.value = false
+        radarRightShow.value = false
+        funnelRightShow.value = false
+        gaugeRightShow.value = false
         showDefault.value = true
         //选中哪个子组件异步显示哪个
         if (newValue) {
@@ -126,6 +147,22 @@ watch(
                     showDefault.value = false
                     numberRightShow.value = true
                 }
+                if (props.mycurrComp.info.type === 'kLineComp') {
+                    showDefault.value = false
+                    kLineRightShow.value = true
+                }
+                if (props.mycurrComp.info.type === 'radarComp') {
+                    showDefault.value = false
+                    radarRightShow.value = true
+                }
+                if (props.mycurrComp.info.type === 'funnelComp') {
+                    showDefault.value = false
+                    funnelRightShow.value = true
+                }
+                if (props.mycurrComp.info.type === 'gaugeComp') {
+                    showDefault.value = false
+                    gaugeRightShow.value = true
+                }
             }, 0)
         }
     }, { immediate: true })
@@ -143,6 +180,10 @@ const lostComp = (data: boolean) => {
         mapRightShow.value = false
         videoRightShow.value = false
         numberRightShow.value = false
+        kLineRightShow.value = false
+        radarRightShow.value = false
+        funnelRightShow.value = false
+        gaugeRightShow.value = false
         showDefault.value = true
     }
 }

@@ -10,6 +10,10 @@ import scatterComp from '../components/scatterComp.vue'
 import mapComp from '../components/mapComp.vue'
 import videoComp from '../components/videoComp.vue'
 import numberComp from '../components/numberComp.vue'
+import kLineComp from '../components/kLineComp.vue'
+import radarComp from '../components/radarComp.vue'
+import funnelComp from '../components/funnelComp.vue'
+import gaugeComp from '../components/gaugeComp.vue'
 
 //获取样式
 let getAttrStr = (attrs) => {
@@ -99,6 +103,18 @@ export const mountedComponent = (component) => {
     }
     else if(component.info.type=='numberComp'){
       thisComp=numberComp;
+    }
+    else if(component.info.type=='kLineComp'){
+      thisComp=kLineComp;
+    }
+    else if(component.info.type=='radarComp'){
+      thisComp=radarComp;
+    }
+    else if(component.info.type=='funnelComp'){
+      thisComp=funnelComp;
+    }
+    else if(component.info.type=='gaugeComp'){
+      thisComp=gaugeComp;
     }
     componentApp = createApp(thisComp, {
       name: id.toString(),

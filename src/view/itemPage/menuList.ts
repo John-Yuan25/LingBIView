@@ -35,6 +35,22 @@ const ChartsMenus=[{
     name:'散点图'
 },
 {
+    type:'kLineComp',
+    name:'K线图'
+},
+{
+    type:'radarComp',
+    name:'雷达图'
+},
+{
+    type:'funnelComp',
+    name:'漏斗图'
+},
+{
+    type:'gaugeComp',
+    name:'仪表盘'
+},
+{
     type:'mapComp',
     name:'地图'
 },
