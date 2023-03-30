@@ -1,11 +1,18 @@
 //饼图配置项
 import { defineStore } from "pinia";
 import scatterComp from "../components/scatterComp.vue";
+import * as echarts from 'echarts';
 
 export const useScatterStore = function (this: any, id: any) {
   return defineStore(id, {
     state: () => ({
       option: {
+        grid:{ // 让图表占满容器
+          top:"20px",
+          left:"40px",
+          right:"15px",
+          bottom:"25px"
+        },
         xAxis: {},
         yAxis: {},
         series: [

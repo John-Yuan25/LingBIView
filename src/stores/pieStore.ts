@@ -1,6 +1,7 @@
 //饼图配置项
 import { defineStore } from "pinia";
 import pieComp from "../components/pieComp.vue";
+import * as echarts from 'echarts';
 
 export const usePieStore = function (this: any, id: any) {
   return defineStore(id, {
@@ -22,7 +23,8 @@ export const usePieStore = function (this: any, id: any) {
           {
             name: "Access From",
             type: "pie",
-            radius: ["40%", "70%"],
+            radius: ["50%", "80%"],
+            center: ['50%', '56%'],
             avoidLabelOverlap: false,
             itemStyle: {
               borderRadius: 10,

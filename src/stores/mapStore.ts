@@ -1,6 +1,7 @@
 //地图配置项
 import { defineStore } from "pinia";
 import mapComp from "../components/mapComp.vue";
+import * as echarts from 'echarts';
 
 export const useMapStore = function (this: any, id: any) {
   return defineStore(id, {

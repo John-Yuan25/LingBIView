@@ -1,6 +1,7 @@
 //漏斗图配置项
 import { defineStore } from "pinia";
 import funnelComp from "../components/funnelComp.vue";
+import * as echarts from 'echarts';
 
 export const useFunnelStore = function (this: any, id: any) {
     return defineStore(id, {
@@ -29,7 +30,7 @@ export const useFunnelStore = function (this: any, id: any) {
                         type: 'funnel',
                         left: '10%',
                         top: 60,
-                        bottom: 60,
+                        bottom: 10,
                         width: '80%',
                         min: 0,
                         max: 100,

@@ -71,7 +71,7 @@ watch(
 )
 
 //监听图表的数据变化
-watch(() => categoryBarStore.option.dataset, (newValue, oldValue) => {
+watch(() => categoryBarStore.option, (newValue, oldValue) => {
     //更新图表数据
     option = categoryBarStore.option as EChartsOption
     option && myChart.setOption(option);

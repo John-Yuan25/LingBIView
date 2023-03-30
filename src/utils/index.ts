@@ -15,6 +15,8 @@ import radarComp from '../components/radarComp.vue'
 import funnelComp from '../components/funnelComp.vue'
 import gaugeComp from '../components/gaugeComp.vue'
 
+import { useCurrStore} from '@/stores';
+  
 //获取样式
 let getAttrStr = (attrs) => {
   let attrStr = "";
@@ -156,7 +158,6 @@ export const mountedComponent = (component) => {
 };
 
 //卸载组件
-import { useCurrStore } from '@/stores';
 
 export const unMountedComponent = (component,currStoreId) => {
   let nodeId = component.info.id;

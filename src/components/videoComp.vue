@@ -37,7 +37,7 @@ let videoUrl = computed(() => {
 function changeStoreId() {
     currStore.$patch({
         currStoreId: storeId,
-        type: 'imgComp'
+        type: 'videoComp'
     })
 }
 </script>

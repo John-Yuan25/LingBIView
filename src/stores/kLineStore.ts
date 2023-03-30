@@ -1,11 +1,18 @@
 //k线图配置项
 import { defineStore } from "pinia";
 import kLineComp from "../components/kLineComp.vue";
+import * as echarts from 'echarts';
 
 export const useKLineStore = function (this: any, id: any) {
     return defineStore(id, {
         state: () => ({
             option: {
+                grid:{ // 让图表占满容器
+                    top:"20px",
+                    left:"40px",
+                    right:"15px",
+                    bottom:"25px"
+                  },
                 xAxis: {
                     data: ['2017-10-24', '2017-10-25', '2017-10-26', '2017-10-27']
                 },

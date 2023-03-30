@@ -1,25 +1,43 @@
 import { defineStore } from "pinia";
 import categoryBarComp from "../components/categoryBarComp.vue";
+import * as echarts from 'echarts';
 
 export const useCategoryBarStore = function (this: any, id: any) {
   return defineStore(id, {
     state: () => ({
       option: {
-        dataset: {
-          dimensions: ["product", "data1"],
-          source: [
-            { product: "Mon", data1: 300 },
-            { product: "Tue", data1: 200 },
-            { product: "Wed", data1: 150 },
-            { product: "Thu", data1: 80 },
-            { product: "Fri", data1: 70 },
-            { product: "Sat", data1: 110 },
-            { product: "Sun", data1: 130 },
-          ],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
         },
-        series: [{ type: "bar" }],
-        xAxis: { type: "category" },
-        yAxis: { type: "value" },
+        legend: {},
+        grid:{ // 让图表占满容器
+          top:"20px",
+          left:"40px",
+          right:"15px",
+          bottom:"25px"
+        },
+        xAxis: {
+          type: 'value',
+          boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+          type: 'category',
+          data: [ '2018', '2019', '2020', '2021', '2022']
+        },
+        series: [
+          {
+              label: {
+              show: true,
+              position: 'inside'
+            },
+            type: 'bar',
+            data: [1100, 1200, 688, 888, 666]
+          },
+       
+        ]
       },
       attribute: [
         {

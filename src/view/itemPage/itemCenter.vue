@@ -783,6 +783,7 @@ function rightClick() {
 
 <style scoped lang="less">
 .wrapper {
+    overflow: hidden;
     background-color: rgb(61, 59, 59);
     position: relative;
     width: 66vw;

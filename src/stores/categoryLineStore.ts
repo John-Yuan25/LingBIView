@@ -1,10 +1,17 @@
 import { defineStore } from "pinia";
 import categoryLineComp from "../components/categoryLineComp.vue";
+import * as echarts from 'echarts';
 
 export const useCategoryLineStore = function (this: any, id: any) {
   return defineStore(id, {
     state: () => ({
       option: {
+        grid:{ // 让图表占满容器
+          top:"20px",
+          left:"40px",
+          right:"15px",
+          bottom:"25px"
+        },
         dataset: {
           dimensions: ["product", "data1"],
           source: [
@@ -51,7 +58,9 @@ export const useCategoryLineStore = function (this: any, id: any) {
       ajaxMethod: "get",
       timer: <any>null,
     }),
-    getters: {},
+    getters: {
+
+    },
     actions: {
       importOption(data) {
         this.option = data;

@@ -35,7 +35,7 @@ onMounted(() => {
     chartDom.addEventListener('click', function () {
         currStore.$patch({
             currStoreId: storeId,
-            type: 'scatterComp'
+            type: 'kLineComp'
         })
     })
     myChart = echarts.init(chartDom);

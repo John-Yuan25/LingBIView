@@ -6,7 +6,7 @@
         <div class="title"><span> 工作区- {{ itemName }}</span></div>
         <div class="btn">
             <span @click="preview"><i class="iconfont icon-yulan"></i> 预览</span>
-            <span @click="publish"><i class="iconfont icon-fabu"></i> 发布</span>
+            <!-- <span @click="publish"><i class="iconfont icon-fabu"></i> 发布</span> -->
         </div>
     </div>
 </template>

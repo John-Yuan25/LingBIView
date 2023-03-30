@@ -1,14 +1,12 @@
 //雷达图配置项
 import { defineStore } from "pinia";
 import radarComp from "../components/radarComp.vue";
+import * as echarts from 'echarts';
 
 export const useRadarStore = function (this: any, id: any) {
     return defineStore(id, {
         state: () => ({
             option: {
-                title: {
-                    text: 'Basic Radar Chart'
-                },
                 legend: {
                     data: ['Allocated Budget', 'Actual Spending']
                 },
