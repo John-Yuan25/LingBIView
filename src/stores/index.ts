@@ -15,10 +15,12 @@ export * from './kLineStore'
 export * from './radarStore'
 export * from './funnelStore'
 export * from './gaugeStore'
+export * from './btnStore'
+export * from './progressStore'
 
 
 import text from './text';
-import img from './imgStore'
+import img from './imgStore';
 import categoryLineStore from './categoryLineStore';
 import categoryBarStore from './categoryBarStore';
 import pieStore from './pieStore';
@@ -31,6 +33,8 @@ import kLineStore from './kLineStore';
 import radarStore from './radarStore';
 import funnelStore from './funnelStore';
 import gaugeStore from './gaugeStore';
+import btnStore from './btnStore';
+import progressStore from './progressStore';
 
 
 
@@ -49,6 +53,8 @@ let obj={
   radarComp:radarStore,
   funnelComp:funnelStore,
   gaugeComp:gaugeStore,
+  btnComp:btnStore,
+  progressComp:progressStore,
 }
 
 let getComponent=(info:any)=>{

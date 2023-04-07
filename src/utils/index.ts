@@ -14,6 +14,8 @@ import kLineComp from '../components/kLineComp.vue'
 import radarComp from '../components/radarComp.vue'
 import funnelComp from '../components/funnelComp.vue'
 import gaugeComp from '../components/gaugeComp.vue'
+import btnComp from '../components/btnComp.vue'
+import progressComp from '../components/progressComp.vue'
 
 import { useCurrStore} from '@/stores';
   
@@ -117,6 +119,12 @@ export const mountedComponent = (component) => {
     }
     else if(component.info.type=='gaugeComp'){
       thisComp=gaugeComp;
+    }
+    else if(component.info.type=='btnComp'){
+      thisComp=btnComp;
+    }
+    else if(component.info.type=='progressComp'){
+      thisComp=progressComp;
     }
     componentApp = createApp(thisComp, {
       name: id.toString(),

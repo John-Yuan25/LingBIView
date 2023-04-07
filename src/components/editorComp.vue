@@ -3,7 +3,7 @@
         <div class="editorBox">
             <div id="monacoEditor"></div>
         </div>
-        <div class="attention"><i class="iconfont icon-xinxi"></i> 点击元素名为thisItem,语法同js</div>
+        <div class="attention"><i class="iconfont icon-xinxi"></i> 点击元素变量名为thisItem,语法同js</div>
         <div class="cancelBtn" @click="cancel">取消</div>
         <div class="saveBtn" @click="save">保存</div>
     </div>
@@ -25,6 +25,8 @@ import {
     useMapStore,
     useScatterStore,
     useTextStore,
+    useNumberStore,
+    useBtnStore
 } from '@/stores';
 
 const route = useRoute()
@@ -37,6 +39,10 @@ if (currStore.type === 'divComp') {
     thisStore = useImgStore(currStore.currStoreId)()
 } else if (currStore.type === 'textComp') {
     thisStore = useTextStore(currStore.currStoreId)()
+} else if (currStore.type === 'numberComp') {
+    thisStore = useNumberStore(currStore.currStoreId)()
+}else if (currStore.type === 'btnComp') {
+    thisStore = useBtnStore(currStore.currStoreId)()
 }
 //创建编辑器实例
 let monacoInstance;

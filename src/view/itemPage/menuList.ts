@@ -20,6 +20,14 @@ const BasicMenus=[{
     type:'numberComp',
     name:'数字组件'
 },
+{
+    type:'btnComp',
+    name:'开关组件'
+},
+{
+    type:'progressComp',
+    name:'进度条组件'
+},
 ]
 const ChartsMenus=[{
     type:'categoryLineComp',

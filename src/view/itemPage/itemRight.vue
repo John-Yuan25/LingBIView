@@ -31,6 +31,10 @@
             </funnelRight>
             <gaugeRight v-if="gaugeRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
             </gaugeRight>
+            <btnRight v-if="btnRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
+            </btnRight>
+            <progressRight v-if="progressRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
+            </progressRight>
         </div>
         <!-- 没选中组件的情况 -->
         <div v-if="showDefault" style="padding:15px">当前没有正在编辑的组件</div>
@@ -53,6 +57,8 @@ import kLineRight from './comp/kLineRight.vue';
 import radarRight from './comp/radarRight.vue';
 import funnelRight from './comp/radarRight.vue';
 import gaugeRight from './comp/gaugeRight.vue';
+import btnRight from './comp/btnRight.vue';
+import progressRight from './comp/progressRight.vue';
 
 import { ref, watch } from 'vue';
 import { useRoute} from 'vue-router'
@@ -82,6 +88,8 @@ let kLineRightShow = ref<boolean>(false)
 let radarRightShow = ref<boolean>(false)
 let funnelRightShow = ref<boolean>(false)
 let gaugeRightShow = ref<boolean>(false)
+let btnRightShow = ref<boolean>(false)
+let progressRightShow = ref<boolean>(false)
 
 watch(
     () => props.mycurrComp,
@@ -103,6 +111,8 @@ watch(
         radarRightShow.value = false
         funnelRightShow.value = false
         gaugeRightShow.value = false
+        btnRightShow.value = false
+        progressRightShow.value = false
         showDefault.value = true
         //选中哪个子组件异步显示哪个
         if (newValue) {
@@ -163,6 +173,14 @@ watch(
                     showDefault.value = false
                     gaugeRightShow.value = true
                 }
+                if (props.mycurrComp.info.type === 'btnComp') {
+                    showDefault.value = false
+                    btnRightShow.value = true
+                }
+                if (props.mycurrComp.info.type === 'progressComp') {
+                    showDefault.value = false
+                    progressRightShow.value = true
+                }
             }, 0)
         }
     }, { immediate: true })
@@ -184,6 +202,8 @@ const lostComp = (data: boolean) => {
         radarRightShow.value = false
         funnelRightShow.value = false
         gaugeRightShow.value = false
+        btnRightShow.value = false
+        progressRightShow.value = false
         showDefault.value = true
     }
 }

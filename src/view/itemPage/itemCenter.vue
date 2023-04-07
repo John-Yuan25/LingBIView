@@ -334,7 +334,7 @@ async function mouseUp(e) {
     let canvasHeight = canvas.clientHeight;
     let comp = document.getElementById(currComp.info.id) as any;
     let borderComp = document.getElementById('borderBox') as any
-    //为了让图标组件缩放生效，需要更新state的数据触发监听函数去changeSize
+    //为了让图表组件缩放生效，需要更新state的数据触发监听函数去changeSize
     let thisStore;
     if (currStore.type === 'categoryLineComp') {
         thisStore = useCategoryLineStore(currStore.currStoreId)()

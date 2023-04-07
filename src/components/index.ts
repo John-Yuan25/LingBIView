@@ -12,6 +12,8 @@ import kLineComp from './kLineComp.vue'
 import radarComp from './radarComp.vue'
 import funnelComp from './funnelComp.vue'
 import gaugeComp from './gaugeComp.vue'
+import btnComp from './btnComp.vue'
+import progressComp from './progressComp.vue'
 
 //定义组件对象
 let obj={
@@ -28,7 +30,9 @@ let obj={
     kLineComp,
     radarComp,
     funnelComp,
-    gaugeComp
+    gaugeComp,
+    btnComp,
+    progressComp
 }
 //组件注册方法
 function install(App){
