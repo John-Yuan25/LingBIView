@@ -45,7 +45,7 @@ export const useProgressStore = function (this: any, id: any) {
             timer: <any>null,
         }),
         getters: {
-            
+
         },
         actions: {
             importOption(data) {

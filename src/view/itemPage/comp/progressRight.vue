@@ -43,9 +43,18 @@
                 </div>
             </div>
             <div class="dataItem" v-if="!sandShow">
-                <span class="label">数值:</span>
+                <span class="label">当前数值:</span>
                 <input class="inputStyle" type="number" v-model="dataStr" @change="updateComp">
             </div>
+            <div class="dataItem" v-if="!sandShow">
+                <span class="label">总数:</span>
+                <input class="inputStyle" type="number" v-model="dataTotal" @change="updateComp">
+            </div>
+            <div class="dataItem" v-if="!sandShow">
+                <span class="label">百分比:</span>
+                <span >{{percent}}%</span>
+            </div>
+
 
         </div>
         <!-- 编辑事件 -->
@@ -77,6 +86,7 @@ const emit = defineEmits([
 const currStore = useCurrStore(props.storeId)()
 let progressStore = useProgressStore(currStore.currStoreId)()
 let dataStr = toRef(progressStore, 'data')
+let dataTotal = toRef(progressStore, 'total')
 let selectDataSource = ['静态数据', '动态请求']
 let selectMethods = ['get', 'post']
 let { currDataSource } = toRefs(progressStore)
@@ -85,6 +95,14 @@ let { ajaxUrl } = toRefs(progressStore)
 let { timeout } = toRefs(progressStore)
 let { ajaxMethod } = toRefs(progressStore)
 let { timer } = toRefs(progressStore)
+let percent=ref<number>(Number((dataStr.value/dataTotal.value).toFixed(2))*100)
+watch(
+    [dataStr,dataTotal],
+    (newValue,oldValue)=>{
+        percent.value=Number((dataStr.value/dataTotal.value).toFixed(2))*100
+    }
+)
+
 //zindex属性在父组件上
 const parentNode = document.getElementById(currStore.currStoreId) as HTMLElement;
 
@@ -93,6 +111,7 @@ function updateComp(e) {
     progressStore = useProgressStore(currStore.currStoreId)()
     progressStore.$patch({
         data: dataStr.value,
+        total:dataTotal.value,
         attribute: [
             {
                 name: "宽度",
