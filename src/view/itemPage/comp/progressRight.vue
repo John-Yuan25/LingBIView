@@ -12,6 +12,11 @@
                   @selectData="progressStore.setSelect">
               </select-option> -->
             </div>
+            <div  class="styleItem">
+                <span class="label" style="font-size: 14px;">进度条颜色:</span>
+            <input class="inputStyle" v-if="soneBgc.type === 'color'" type="color" v-model="soneBgc.value">
+            </div>
+
         </div>
         <!-- 数据 -->
         <div v-show="props.checkIndex === 1" class="dataBox">
@@ -52,7 +57,7 @@
             </div>
             <div class="dataItem" v-if="!sandShow">
                 <span class="label">百分比:</span>
-                <span >{{percent}}%</span>
+                <span>{{ percent }}%</span>
             </div>
 
 
@@ -95,11 +100,11 @@ let { ajaxUrl } = toRefs(progressStore)
 let { timeout } = toRefs(progressStore)
 let { ajaxMethod } = toRefs(progressStore)
 let { timer } = toRefs(progressStore)
-let percent=ref<number>(Number((dataStr.value/dataTotal.value).toFixed(2))*100)
+let percent = ref<number>(Number((dataStr.value / dataTotal.value).toFixed(2)) * 100)
 watch(
-    [dataStr,dataTotal],
-    (newValue,oldValue)=>{
-        percent.value=Number((dataStr.value/dataTotal.value).toFixed(2))*100
+    [dataStr, dataTotal],
+    (newValue, oldValue) => {
+        percent.value = Number((dataStr.value / dataTotal.value).toFixed(2)) * 100
     }
 )
 
@@ -111,7 +116,7 @@ function updateComp(e) {
     progressStore = useProgressStore(currStore.currStoreId)()
     progressStore.$patch({
         data: dataStr.value,
-        total:dataTotal.value,
+        total: dataTotal.value,
         attribute: [
             {
                 name: "宽度",
@@ -138,10 +143,19 @@ function updateComp(e) {
                 type: 'number',
                 key: 'borderRadius',
                 value: props.thiscurrComp.attribute[4].value,
+            }, {
+                name: "透明度",
+                type: 'number',
+                key: 'opacity',
+                value: props.thiscurrComp.attribute[5].value,
             },
         ]
     })
     parentNode.style.zIndex = props.thiscurrComp.attribute[2].value
+}
+let soneBgc: any=toRef(progressStore, 'sonBgc')
+const updateSonBgc=function(){
+
 }
 
 const getDataSource = (data) => {
