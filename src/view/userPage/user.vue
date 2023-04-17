@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        <!-- 遮罩层 -->
+        <div class="cover" v-show="showCover"></div>
         <div class="aboutBox" v-if="aboutBoxShow">
             <h3>软件Github地址</h3>
             <a href="https://github.com/John-Yuan25/LingBIView.git"
@@ -26,7 +28,7 @@
         <aside>
             <nav>
                 <router-link to="/myItems" active-class="active">
-                     我的项目 
+                    我的项目
                 </router-link>
             </nav>
         </aside>
@@ -46,7 +48,7 @@ const router = useRouter()
 
 let username = sessionStorage.getItem('userName');
 const textStore = userItemsStore(username)();
-textStore.userName=username as string
+textStore.userName = username as string
 
 
 let optionShow = ref<boolean>(false);
@@ -57,6 +59,7 @@ const showOption = function (e) {
 const offOption = function (e) {
     optionShow.value = false;
 }
+let showCover = ref<Boolean>(false)
 //退出登录
 const logOut = function (e) {
     router.push({
@@ -67,9 +70,11 @@ const logOut = function (e) {
 }
 const showAbout = function (e) {
     aboutBoxShow.value = true;
+    showCover.value = true;
 }
 const aboutBoxOff = function (e) {
     aboutBoxShow.value = false;
+    showCover.value = false;
 }
 </script>
 
@@ -79,7 +84,16 @@ const aboutBoxOff = function (e) {
     height: 100%;
     background-color: #101014;
     position: relative;
-
+    .cover {
+        width: 120vw;
+        height: 120vh;
+        position: fixed;
+        top: -10vh;
+        left: -10vw;
+        z-index: 98;
+        background-color: #101014;
+        opacity: 0.5;
+    }
     .aboutBox {
         width: 400px;
         height: 120px;
@@ -90,7 +104,7 @@ const aboutBoxOff = function (e) {
         top: 40%;
         left: 50%;
         transform: translate(-50%, -50%);
-        z-index: 11;
+        z-index: 99;
         border-radius: 5px;
 
         h3 {
@@ -98,11 +112,12 @@ const aboutBoxOff = function (e) {
             color: #fff;
             margin-bottom: 10px;
         }
+
         a {
             margin-left: 10px;
             color: #fff;
-            text-decoration:none;
-            
+            text-decoration: none;
+
         }
 
         div {
@@ -278,7 +293,7 @@ aside {
             font-size: 14px;
             color: #fff;
             cursor: pointer;
-            text-decoration:none;
+            text-decoration: none;
         }
 
         a:hover {
