@@ -16,6 +16,7 @@ import funnelComp from '../components/funnelComp.vue'
 import gaugeComp from '../components/gaugeComp.vue'
 import btnComp from '../components/btnComp.vue'
 import progressComp from '../components/progressComp.vue'
+import timeComp from '../components/timeComp.vue'
 
 import { useCurrStore} from '@/stores';
   
@@ -125,6 +126,9 @@ export const mountedComponent = (component) => {
     }
     else if(component.info.type=='progressComp'){
       thisComp=progressComp;
+    }
+    else if(component.info.type=='timeComp'){
+      thisComp=timeComp;
     }
     componentApp = createApp(thisComp, {
       name: id.toString(),

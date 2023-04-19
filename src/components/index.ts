@@ -14,6 +14,7 @@ import funnelComp from './funnelComp.vue'
 import gaugeComp from './gaugeComp.vue'
 import btnComp from './btnComp.vue'
 import progressComp from './progressComp.vue'
+import timeComp from './timeComp.vue'
 
 //定义组件对象
 let obj={
@@ -32,7 +33,8 @@ let obj={
     funnelComp,
     gaugeComp,
     btnComp,
-    progressComp
+    progressComp,
+    timeComp
 }
 //组件注册方法
 function install(App){

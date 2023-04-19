@@ -17,6 +17,7 @@ export * from './funnelStore'
 export * from './gaugeStore'
 export * from './btnStore'
 export * from './progressStore'
+export * from './timeStore'
 
 
 import text from './text';
@@ -35,6 +36,7 @@ import funnelStore from './funnelStore';
 import gaugeStore from './gaugeStore';
 import btnStore from './btnStore';
 import progressStore from './progressStore';
+import timeStore from './timeStore';
 
 
 
@@ -55,6 +57,7 @@ let obj={
   gaugeComp:gaugeStore,
   btnComp:btnStore,
   progressComp:progressStore,
+  timeComp:timeStore,
 }
 
 let getComponent=(info:any)=>{

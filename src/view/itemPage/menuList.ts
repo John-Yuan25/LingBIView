@@ -28,6 +28,10 @@ const BasicMenus=[{
     type:'progressComp',
     name:'进度条组件'
 },
+{
+    type:'timeComp',
+    name:'时间组件'
+},
 ]
 const ChartsMenus=[{
     type:'categoryLineComp',
