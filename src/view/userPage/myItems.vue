@@ -51,7 +51,7 @@ let itemArr: Array<any> = reactive([])
 itemArr = userItems.items;
 let imgSelectShow = ref<Boolean>(false)
 let showCover = ref<Boolean>(false)
-let imgUrl=ref<String>('')
+let imgUrl = ref<String>('')
 //换封面图
 const changeImg = function () {
     imgSelectShow.value = true;
@@ -64,7 +64,7 @@ const cancelImg = function () {
 }
 //保存封面
 const saveImg = function (index) {
-    if(imgUrl.value!==''){
+    if (imgUrl.value !== '') {
         userItems.items[index].itemImg = imgUrl.value;
     }
     imgSelectShow.value = false;
@@ -83,13 +83,15 @@ const toEdit = function (item) {
 
 //删除项目
 const deleteItem = function (item, index) {
-    const currStore = useCurrStore(item.storeId)()
-    for (let i = 0; i < currStore.Allcomponents.length; i++) {
-        if (localStorage.getItem(currStore.Allcomponents[i].info.id))
-            localStorage.removeItem(currStore.Allcomponents[i].info.id)
+    if (confirm("确定要删除这个项目吗？")) {
+        const currStore = useCurrStore(item.storeId)()
+        for (let i = 0; i < currStore.Allcomponents.length; i++) {
+            if (localStorage.getItem(currStore.Allcomponents[i].info.id))
+                localStorage.removeItem(currStore.Allcomponents[i].info.id)
+        }
+        localStorage.removeItem(item.storeId);
+        itemArr.splice(index, 1);
     }
-    localStorage.removeItem(item.storeId);
-    itemArr.splice(index, 1);
 }
 //预览项目
 const previewItem = function (item) {
