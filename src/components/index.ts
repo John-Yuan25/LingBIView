@@ -15,6 +15,7 @@ import gaugeComp from './gaugeComp.vue'
 import btnComp from './btnComp.vue'
 import progressComp from './progressComp.vue'
 import timeComp from './timeComp.vue'
+import BDmapComp from './BDmapComp.vue'
 
 //定义组件对象
 let obj={
@@ -34,7 +35,8 @@ let obj={
     gaugeComp,
     btnComp,
     progressComp,
-    timeComp
+    timeComp,
+    BDmapComp,
 }
 //组件注册方法
 function install(App){

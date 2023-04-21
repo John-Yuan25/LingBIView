@@ -17,6 +17,7 @@ import gaugeComp from '../components/gaugeComp.vue'
 import btnComp from '../components/btnComp.vue'
 import progressComp from '../components/progressComp.vue'
 import timeComp from '../components/timeComp.vue'
+import BDmapComp from '../components/BDmapComp.vue'
 
 import { useCurrStore} from '@/stores';
   
@@ -129,6 +130,9 @@ export const mountedComponent = (component) => {
     }
     else if(component.info.type=='timeComp'){
       thisComp=timeComp;
+    }
+    else if(component.info.type=='BDmapComp'){
+      thisComp=BDmapComp;
     }
     componentApp = createApp(thisComp, {
       name: id.toString(),

@@ -18,6 +18,7 @@ export * from './gaugeStore'
 export * from './btnStore'
 export * from './progressStore'
 export * from './timeStore'
+export * from './BDmapStore'
 
 
 import text from './text';
@@ -37,6 +38,7 @@ import gaugeStore from './gaugeStore';
 import btnStore from './btnStore';
 import progressStore from './progressStore';
 import timeStore from './timeStore';
+import BDmapStore from './BDmapStore';
 
 
 
@@ -58,6 +60,7 @@ let obj={
   btnComp:btnStore,
   progressComp:progressStore,
   timeComp:timeStore,
+  BDmapComp:BDmapStore,
 }
 
 let getComponent=(info:any)=>{

@@ -66,6 +66,10 @@ const ChartsMenus=[{
     type:'mapComp',
     name:'地图'
 },
+{
+    type:'BDmapComp',
+    name:'百度地图'
+}
 ]
 
 export {

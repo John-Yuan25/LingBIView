@@ -37,6 +37,8 @@
             </progressRight>
             <timeRight v-if="timeRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
             </timeRight>
+            <BDmapRight v-if="BDmapRightShow" :thiscurrComp="thiscurrComp" :storeId="route.query.storeId" :checkIndex="checkIndex" @lostComp="lostComp">
+            </BDmapRight>
         </div>
         <!-- 没选中组件的情况 -->
         <div v-if="showDefault" style="padding:15px">当前没有正在编辑的组件</div>
@@ -62,6 +64,7 @@ import gaugeRight from './comp/gaugeRight.vue';
 import btnRight from './comp/btnRight.vue';
 import progressRight from './comp/progressRight.vue';
 import timeRight from './comp/timeRight.vue';
+import BDmapRight from './comp/BDmapRight.vue';
 
 import { ref, watch } from 'vue';
 import { useRoute} from 'vue-router'
@@ -94,6 +97,7 @@ let gaugeRightShow = ref<boolean>(false)
 let btnRightShow = ref<boolean>(false)
 let progressRightShow = ref<boolean>(false)
 let timeRightShow = ref<boolean>(false)
+let BDmapRightShow = ref<boolean>(false)
 
 watch(
     () => props.mycurrComp,
@@ -118,6 +122,7 @@ watch(
         btnRightShow.value = false
         progressRightShow.value = false
         timeRightShow.value = false
+        BDmapRightShow.value = false
         showDefault.value = true
         //选中哪个子组件异步显示哪个
         if (newValue) {
@@ -190,6 +195,10 @@ watch(
                     showDefault.value = false
                     timeRightShow.value = true
                 }
+                if (props.mycurrComp.info.type === 'BDmapComp') {
+                    showDefault.value = false
+                    BDmapRightShow.value = true
+                }
             }, 0)
         }
     }, { immediate: true })
@@ -214,6 +223,7 @@ const lostComp = (data: boolean) => {
         btnRightShow.value = false
         progressRightShow.value = false
         timeRightShow.value = false
+        BDmapRightShow.value = false
         showDefault.value = true
     }
 }
