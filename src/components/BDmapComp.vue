@@ -9,6 +9,7 @@
 import { computed } from '@vue/reactivity';
 import { useBDmapStore, useCurrStore } from '@/stores';
 import { toRef, ref,watch } from 'vue';
+console.log('window',window);
 
 const props = defineProps([
   'id',
@@ -33,6 +34,8 @@ let scaleCtrl;
 let zoomCtrl;
 let cityCtrl;
 let marker;
+
+
 setTimeout(() => {
   map = new BMapGL.Map("container");
   point = new BMapGL.Point(BDmapStore.pointE, BDmapStore.pointN);
