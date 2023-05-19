@@ -52,11 +52,19 @@ export const useCategoryLineStore = function (this: any, id: any) {
       ],
       tag: categoryLineComp,
       sandShow: false,
+      mqttShow: false,
       ajaxUrl: "",
       currDataSource: "静态数据",
       timeout: <unknown>undefined,
       ajaxMethod: "get",
       timer: <any>null,
+
+      clientId:'emqx_cloud60c531',
+      username:'admin',
+      password:'123456',
+      mqttUrl:'wss://c6482b84.ala.cn-hangzhou.emqxsl.cn:8084/mqtt',
+      topic:'testtopic/1',
+      
     }),
     getters: {
 

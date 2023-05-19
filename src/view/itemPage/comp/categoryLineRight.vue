@@ -41,6 +41,35 @@
                 </div>
             </div>
 
+            <div class="sandOptionBox" v-if="mqttShow">
+                <div class="styleItem">
+                    <span class="label">请求地址:</span>
+                    <input class="inputStyle" type="text" v-model="mqttUrl">
+                </div>
+                <div class="styleItem">
+                    <span class="label">clientId:</span>
+                    <input class="inputStyle" type="text" v-model="clientId">
+                </div>
+                <div class="styleItem">
+                    <span class="label">username:</span>
+                    <input class="inputStyle" type="text" v-model="username">
+                </div>
+                <div class="styleItem">
+                    <span class="label">password:</span>
+                    <input class="inputStyle" type="text" v-model="password">
+                </div>
+                <div class="styleItem">
+                    <span class="label">topic:</span>
+                    <input class="inputStyle" type="text" v-model="topic">
+                </div>
+                <div class="sandBox">
+                    <button class="sandBtn" id="sandAjaxBtn" @click="creatMqtt">建立连接</button>
+                </div>
+                <div class="sandBox">
+                    <button class="sandBtn" id="stopAjaxBtn" @click="destoryMqtt">断开连接</button>
+                </div>
+            </div>
+
             <div class="dataShow">{{ optionStr }}</div>
             <div class="btn">
                 <span id="updateDataSpan">
@@ -64,6 +93,7 @@ import { exportFileJSON, importFileJSON, unMountedComponent } from '../../../uti
 import { ButtonHTMLAttributes, ref, watch, toRefs } from 'vue';
 import selectOption from './selectOption.vue';
 import { getJson } from '../../../server'
+import * as mqtt from "mqtt/dist/mqtt.min";
 
 const props = defineProps([
     'thiscurrComp',
@@ -77,7 +107,7 @@ const currStore = useCurrStore(props.storeId)()
 let categoryLineStore = useCategoryLineStore(currStore.currStoreId)()
 let optionStr = ref(categoryLineStore.option)
 //zindex属性在父组件上
-const parentNode=document.getElementById(currStore.currStoreId) as HTMLElement;
+const parentNode = document.getElementById(currStore.currStoreId) as HTMLElement;
 
 //监听图表的数据变化,更新optionStr
 watch(() => categoryLineStore.option, (newValue, oldValue) => {
@@ -102,7 +132,7 @@ function updateComp(e) {
                 key: 'height',
                 value: props.thiscurrComp.attribute[1].value,
                 placeholder: '请输入高度'
-            },{
+            }, {
                 name: '层级',
                 type: 'number',
                 key: 'z-index',
@@ -110,7 +140,7 @@ function updateComp(e) {
             }
         ]
     })
-    parentNode.style.zIndex=props.thiscurrComp.attribute[2].value
+    parentNode.style.zIndex = props.thiscurrComp.attribute[2].value
 
 }
 
@@ -131,32 +161,44 @@ function downloadData() {
     let dataStr = JSON.stringify(categoryLineStore.option)
     //调用导出json数据方法
     console.log(currStore.currStoreId);
-    
+
     exportFileJSON(dataStr, `${currStore.currStoreId}.json`)
 }
 
-//设置静态数据与动态请求
+//设置静态数据与http请求
 let { sandShow } = toRefs(categoryLineStore)
+let { mqttShow } = toRefs(categoryLineStore)
 let { ajaxMethod } = toRefs(categoryLineStore)
-let selectDataSource = ['静态数据', '动态请求']
+let selectDataSource = ['静态数据', 'http请求', 'mqtt请求']
 let selectMethods = ['get', 'post']
 let { ajaxUrl } = toRefs(categoryLineStore)
+let { mqttUrl } = toRefs(categoryLineStore)
 let { currDataSource } = toRefs(categoryLineStore)
 let { timeout } = toRefs(categoryLineStore)
+let { clientId } = toRefs(categoryLineStore)
+let { username } = toRefs(categoryLineStore)
+let { password } = toRefs(categoryLineStore)
+let { topic } = toRefs(categoryLineStore)
 const getDataSource = (data) => {
     if (data === '静态数据') {
         sandShow.value = false
+        mqttShow.value = false
         currDataSource.value = '静态数据'
     }
-    else if (data === '动态请求') {
+    else if (data === 'http请求') {
+        mqttShow.value = false
         sandShow.value = true
-        currDataSource.value = '动态请求'
+        currDataSource.value = 'http请求'
+    } else if (data === 'mqtt请求') {
+        sandShow.value = false
+        mqttShow.value = true
+        currDataSource.value = 'mqtt请求'
     }
 }
 const getMethods = (data) => {
     ajaxMethod.value = data
 }
-//发送请求
+//发送http请求
 let { timer } = toRefs(categoryLineStore)
 
 const sandAjax = async () => {
@@ -219,6 +261,102 @@ const stopAjax = () => {
     }
 }
 
+//mqtt请求配置
+let client;
+
+// 设置将要订阅的主题和 QoS
+let subscription;
+
+//订阅方法
+const doSubscribe = () => {
+    const { topic, qos } = subscription.value;
+    client.subscribe(
+        topic,
+        { qos },
+        (error: Error, granted: mqtt.ISubscriptionGrant[]) => {
+            if (error) {
+                console.log("subscribe error:", error);
+                return;
+            }
+            console.log("subscribe successfully:", granted);
+        }
+    );
+};
+
+// doSubscribe()
+//取消订阅
+const doUnSubscribe = () => {
+    const { topic, qos } = subscription.value;
+    client.unsubscribe(topic, { qos }, (error) => {
+        if (error) {
+            console.log("unsubscribe error:", error);
+            return;
+        }
+        console.log(`unsubscribed topic: ${topic}`);
+    });
+};
+
+// // 设置发布的主题、消息及 QoS
+// const publish = ref({
+//     topic: "topic/browser",
+//     payload: '{ "msg": "Hello, I am browser." }',
+//     qos: 0 as mqtt.QoS,
+// });
+
+// const doPublish = () => {
+//     const { topic, qos, payload } = publish.value;
+//     client.publish(topic, payload, { qos }, (error) => {
+//         if (error) {
+//             console.log("publish error:", error);
+//             return;
+//         }
+//         console.log(`published message: ${payload}`);
+//     });
+// };
+
+
+
+//断开连接
+const destroyConnection = () => {
+    if(client){
+    if (client.connected) {
+        try {
+            client.end(false, () => {
+                console.log("disconnected successfully");
+            });
+        } catch (error) {
+            console.log("disconnect error:", error);
+        }
+    }
+    }
+};
+
+//建立mqtt连接
+const creatMqtt = function () {
+    console.log('建立mqtt连接');
+    client = mqtt.connect(mqttUrl.value, {
+        clientId: clientId.value,
+        username: username.value,
+        password: password.value
+        // ...other options
+    });
+    subscription = ref({
+        topic: topic.value,
+        qos: 0 as mqtt.QoS,
+    });
+    doSubscribe();
+    //接收消息
+    client.on("message", (topic: string, message) => {
+        console.log(`received message: ${message} from topic: ${topic}`);
+        message=JSON.parse(message);
+        categoryLineStore.importOption(message);
+    });
+}
+//断开mqtt连接
+const destoryMqtt = function () {
+    console.log('断开mqtt连接');
+    destroyConnection();
+}
 //删除组件
 const delectCom = () => {
     if (confirm("确定要删除这个组件吗？")) {
@@ -227,14 +365,14 @@ const delectCom = () => {
             clearInterval(timer.value)
             timer.value = null
         }
+        destroyConnection();
         emit('lostComp', true)
         currStore.currCompShow = false
         //卸载组件
-        unMountedComponent(props.thiscurrComp,props.storeId)
+        unMountedComponent(props.thiscurrComp, props.storeId)
         //删除本地存储的当前组件数据
         localStorage.removeItem(currStore.currStoreId)
     }
-
 }
 
 </script>
@@ -259,12 +397,14 @@ const delectCom = () => {
             background-color: #252527;
             border-radius: 5px;
             border: 1px solid #252527;
-            outline-style: none ;
+            outline-style: none;
         }
-        .inputStyle:hover{
+
+        .inputStyle:hover {
             border: 1px solid #69dcb5;
         }
-        .inputStyle:focus{
+
+        .inputStyle:focus {
             border: 1px solid #69dcb5;
             background-color: rgb(61, 59, 59);
         }
